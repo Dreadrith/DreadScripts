@@ -110,20 +110,8 @@ public class DuplicateWithMaterials : EditorWindow
     }
     private void OnGUI()
     {
-        EditorGUILayout.BeginHorizontal();
-        EditorGUIUtility.labelWidth = 60;
-        EditorGUILayout.LabelField("New Materials Path:", GUILayout.Width(120));
-        EditorGUIUtility.labelWidth = 0;
-        EditorGUI.BeginDisabledGroup(true);
-        EditorGUILayout.TextField(folderPath);
-        EditorGUI.EndDisabledGroup();
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            string dummy;
-            if ((dummy = DSCommonMethods.AssetFolderPath("New Mats Path", "DupeWithMatsPath")) != "")
-                folderPath = dummy;
-        }
-        EditorGUILayout.EndHorizontal();
+        DSCommonMethods.AssetFolderPath(ref folderPath, "New Materials Path", "DupeWithMatsPath");
+        
         EditorGUI.BeginChangeCheck();
         separate = EditorGUILayout.Toggle(new GUIContent("Separate Shared Materials", "Force each material slot to have its own material."), separate);
         if (EditorGUI.EndChangeCheck())
