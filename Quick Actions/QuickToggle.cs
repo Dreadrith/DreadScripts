@@ -4,6 +4,7 @@ using UnityEditor;
 using DS_CommonMethods;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 #if VRC_SDK_VRCSDK3
 using VRC_AvatarDescriptor = VRC.SDK3.Avatars.Components.VRCAvatarDescriptor;
@@ -17,11 +18,10 @@ public class QuickToggle : EditorWindow
     public static GameObject root;
     public static List<ToggleObject> targets = new List<ToggleObject>();
     public static UnityEditorInternal.ReorderableList targetList;
-    public static bool gesture, autoName,pingClip;
+    public static bool gesture, autoName,pingClip,autoClose;
     public static string clipName;
 
     private static GUIContent warnIcon;
-    private static GUIContent arrowIcon;
     private static GUIContent greenLight, redLight;
     private static GUIContent switchIcon;
     
@@ -56,20 +56,55 @@ public class QuickToggle : EditorWindow
                 if (targetObjs.Length == 1)
                 clipName = targetObjs[0].name;
             else
+            {
                 for (int i = 0; i < targetObjs.Length; i++)
                 {
-                    if (targetObjs[i].name.Length < 2)
-                        continue;
-                    clipName += targetObjs[i].name.Substring(0, 2).ToUpper();
+                    int letterCount = Mathf.Clamp(7 - targetObjs.Length, 2, 5);
+                    clipName += targetObjs[i].name.Substring(0, Mathf.Clamp(letterCount,1,targetObjs[i].name.Length));
                     if (i != targetObjs.Length - 1)
                         clipName += "-";
                 }
-
-            clipName += " Toggle";
+            }
+            clipName += " Enable";
         }
         CheckIfValid();
         init = false;
     } 
+
+    private void Rename()
+    {
+        if (!autoName || targets.Count == 0)
+            return;
+        string statusName = "";
+        bool enabled=false, disabled=false;
+        for (int i=0;i<targets.Count;i++)
+        {
+            if (targets[i].Obj)
+                if (targets[i].active)
+                {
+                    enabled = true;
+                    statusName = " Enable";
+                }
+                else 
+                {
+                    disabled = true;
+                    statusName = " Disable";
+                }
+            if (enabled && disabled)
+            {
+                statusName = " Toggle";
+                break;
+            }
+        }
+
+        if (clipName == (clipName = Regex.Replace(clipName, " enable", statusName, RegexOptions.IgnoreCase)))
+        {
+            if (clipName == (clipName = Regex.Replace(clipName, " disable", statusName, RegexOptions.IgnoreCase)))
+            {
+                clipName = Regex.Replace(clipName, " toggle", statusName, RegexOptions.IgnoreCase);
+            }
+        }
+    }
 
     private void OnGUI()
     {
@@ -93,6 +128,7 @@ public class QuickToggle : EditorWindow
             PlayerPrefs.SetInt("QuickToggleAutoName", autoName ? 1 : 0);
         EditorGUIUtility.labelWidth = 0;
         EditorGUILayout.EndHorizontal();
+
         targetList.DoLayoutList();
         EditorGUI.BeginChangeCheck();
         gesture = EditorGUILayout.Toggle(new GUIContent("Is Gesture","Generates curves in 2 frames rather than 1 and sets loop time to true."), gesture);
@@ -102,6 +138,10 @@ public class QuickToggle : EditorWindow
         pingClip = EditorGUILayout.Toggle(new GUIContent("Ping Clip", "Automatically highlights the newly generated clip in Assets"), pingClip);
         if (EditorGUI.EndChangeCheck())
             PlayerPrefs.SetInt("QuickTogglePingClip", pingClip ? 1 : 0);
+        EditorGUI.BeginChangeCheck();
+        autoClose = EditorGUILayout.Toggle(new GUIContent("Close Window", "Close window upon clip creation."), pingClip);
+        if (EditorGUI.EndChangeCheck())
+            PlayerPrefs.SetInt("QuickToggleAutoClose", autoClose ? 1 : 0);
         EditorGUI.BeginDisabledGroup(!clipValid || string.IsNullOrWhiteSpace(clipName));
         GUI.SetNextControlName("CreateClip");
         if (GUILayout.Button("Create Clip"))
@@ -125,20 +165,20 @@ public class QuickToggle : EditorWindow
             CreateClip();
     }
 
-    static void CreateClip()
+    void CreateClip()
     {
         DSCommonMethods.RecreateFolders(myPath);
         AnimationClip myClip = new AnimationClip();
         foreach (ToggleObject obj in targets)
         {
-            if (obj==null)
+            if (obj == null)
                 continue;
             string path = AnimationUtility.CalculateTransformPath(obj.Obj.transform, root.transform);
 
             if (!gesture)
                 myClip.SetCurve(path, typeof(GameObject), "m_IsActive", new AnimationCurve { keys = new Keyframe[] { new Keyframe { time = 0, value = obj.active ? 1 : 0 } } });
             else
-                myClip.SetCurve(path, typeof(GameObject),  "m_IsActive" , new AnimationCurve { keys = new Keyframe[] { new Keyframe { time = 0, value = obj.active ? 1 : 0 }, new Keyframe { time = 1f / 60f, value = obj.active ? 1 : 0 } } });
+                myClip.SetCurve(path, typeof(GameObject), "m_IsActive", new AnimationCurve { keys = new Keyframe[] { new Keyframe { time = 0, value = obj.active ? 1 : 0 }, new Keyframe { time = 1f / 60f, value = obj.active ? 1 : 0 } } });
         }
         if (gesture)
         {
@@ -146,11 +186,13 @@ public class QuickToggle : EditorWindow
             settings.loopTime = true;
             AnimationUtility.SetAnimationClipSettings(myClip, settings);
         }
-        string clipPath = AssetDatabase.GenerateUniqueAssetPath(myPath + "/"+clipName+ ".anim");
+        string clipPath = AssetDatabase.GenerateUniqueAssetPath(myPath + "/" + clipName + ".anim");
         AssetDatabase.CreateAsset(myClip, clipPath);
         if (pingClip)
             EditorGUIUtility.PingObject(AssetDatabase.LoadAssetAtPath<Object>(clipPath));
-        Debug.Log(clipPath.Substring(clipPath.LastIndexOf('/')+1,clipPath.Length-clipPath.LastIndexOf('/')-6) +" Created.");
+        Debug.Log(clipPath.Substring(clipPath.LastIndexOf('/') + 1, clipPath.Length - clipPath.LastIndexOf('/') - 6) + " Created.");
+        if (autoClose)
+            Close();
     }
 
     private static void CheckIfValid()
@@ -183,7 +225,6 @@ public class QuickToggle : EditorWindow
     private void OnEnable()
     {
         warnIcon = new GUIContent(EditorGUIUtility.IconContent("d_console.warnicon.sml")) {tooltip="Object is not a child of Root!" };
-        arrowIcon = new GUIContent(EditorGUIUtility.IconContent("d_refresh")) {tooltip="Cycle Component"};
         greenLight = new GUIContent(EditorGUIUtility.IconContent("d_greenLight")) {tooltip="Enable"};
         redLight = new GUIContent(EditorGUIUtility.IconContent("d_redLight")) {tooltip="Disable"};
         switchIcon = new GUIContent(EditorGUIUtility.IconContent("d_Animation.Record")) {tooltip = "Invert Toggles"};
@@ -192,6 +233,7 @@ public class QuickToggle : EditorWindow
         autoName = PlayerPrefs.GetInt("QuickToggleAutoName", 1) == 1;
         pingClip = PlayerPrefs.GetInt("QuickTogglePingClip", 1) == 1;
         gesture = PlayerPrefs.GetInt("QuickToggleIsGesture", 0) == 1;
+        autoClose = PlayerPrefs.GetInt("QuickToggleAutoClose", 1) == 1;
         RefreshList();
         CheckIfValid();
         init = false;
@@ -205,6 +247,7 @@ public class QuickToggle : EditorWindow
         {
             foreach (ToggleObject obj in targets)
                 obj.active = !obj.active;
+            Rename();
         }
     }
 
@@ -216,6 +259,7 @@ public class QuickToggle : EditorWindow
         {
             targets.RemoveAt(index);
             CheckIfValid();
+            Rename();
             return;
         }
 
@@ -249,11 +293,13 @@ public class QuickToggle : EditorWindow
             if (GUI.Button(new Rect(xCoord, rect.y, 20, 18), greenLight, GUIStyle.none))
             {
                 toggleObj.active = false;
+                Rename();
             }
         if (!toggleObj.active)
             if (GUI.Button(new Rect(xCoord, rect.y, 20, 18), redLight, GUIStyle.none))
             {
                 toggleObj.active = true;
+                Rename();
             }
     
     }
