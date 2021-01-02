@@ -1,6 +1,8 @@
 # DEMO
 Unavailable for the public, read more about it in my server or contact me personally.
+
 Discord: Dreadrith#3238
+
 Server: https://discord.gg/ZsPfrGn
 
 # Scuffinator
@@ -67,4 +69,6 @@ This is mostly effective against the tool mentioned above.
 The Avatar will work as intended in-game with no repercussions.
 Proof for the legitimacy of this protection is on my Discord server, you may also contact me for proof.
 
-Discord: https://discord.gg/ZsPfrGn
+Discord: Dreadrith#3238
+
+Server: https://discord.gg/ZsPfrGn
