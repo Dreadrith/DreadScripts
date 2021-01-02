@@ -25,6 +25,7 @@ The avatar will have an additional polygon, skinned mesh renderer, and material 
 
 # Protect Animation
 Can't reveal any details, just know that your animations won't be able to be ripped and will have altered animation path
+
 Pre-rip
 
 ![AnimPreRip](https://raw.githubusercontent.com/Dreadrith/DreadScripts/main/Scuffinator/info_image/preripanim.jpg)
