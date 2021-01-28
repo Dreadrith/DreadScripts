@@ -1,17 +1,27 @@
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
-
 namespace DS_CommonMethods
 {
+    [InitializeOnLoad]
     public static class DSCommonMethods
     {
         private static Texture2D discordIcon = Resources.Load<Texture2D>("DS_DiscordIcon");
         private static Texture2D githubIcon = Resources.Load<Texture2D>("DS_GithubIcon");
-        
 
+        static DSCommonMethods()
+        {
+            BuildTargetGroup targetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
+            string defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
+            if (defines.Contains("DS_HASRESOURCES"))
+            {
+                return;
+            }
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, defines + ";DS_HASRESOURCES");
+        }
 
         #region Asset Methods
         /// <param name="script">The script whose path to get.</param>
@@ -48,6 +58,11 @@ namespace DS_CommonMethods
                 return myAsset;
         }
 
+        public static void QuickCreate(Object obj, string assetPath)
+        {
+            AssetDatabase.CreateAsset(obj, AssetDatabase.GenerateUniqueAssetPath(assetPath + typeExtension[obj.GetType()]));
+        }
+
         public static T CopyAssetAndReturn<T>(string path, string newpath) where T : Object
         {
             if (path != newpath)
@@ -56,13 +71,38 @@ namespace DS_CommonMethods
 
         }
 
-        public static T CopyAssetAndReturn<T>(Object obj, string newpath) where T : Object
+        public static T CopyAssetAndReturn<T>(Object obj, string newPath) where T : Object
         {
-            Object newAsset = Object.Instantiate(obj);
-            AssetDatabase.CreateAsset(newAsset, newpath);
-            return AssetDatabase.LoadAssetAtPath<T>(newpath);
+            string assetPath = AssetDatabase.GetAssetPath(obj);
+            Object myAsset = AssetDatabase.LoadAssetAtPath<Object>(assetPath);
+            if (myAsset && myAsset != obj)
+            {
+                Object[] subObjects = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+                for (int i = 0; i < subObjects.Length; i++)
+                {
+                    if (subObjects[i] == obj)
+                    {
+                        Object newAsset = Object.Instantiate(subObjects[i]);
+                        AssetDatabase.CreateAsset(newAsset, newPath);
+                        return AssetDatabase.LoadAssetAtPath<T>(newPath);
+                    }
+
+                }
+                return null;
+            }
+            else
+            {
+                if (myAsset)
+                {
+                    AssetDatabase.CopyAsset(assetPath, newPath);
+                    return AssetDatabase.LoadAssetAtPath<T>(newPath);
+                }
+                else
+                    return null;
+            }
+
         }
-        
+
         /// <summary>
         /// Given a Folder Path, Checks if each folder exits and creates it if needed
         /// </summary>
@@ -93,7 +133,7 @@ namespace DS_CommonMethods
 
         #region Animator Methods
         #region Animator Avatar Methods
-        public static void IterateBoneTransforms(Animator ani, System.Action<Transform,int> action,List<int> except=null)
+        public static void IterateBoneTransforms(Animator ani, System.Action<Transform, int> action, List<int> except = null)
         {
             List<int> validNums = new List<int>();
             for (int i = 0; i < 55; i++)
@@ -107,14 +147,14 @@ namespace DS_CommonMethods
                 Transform bone;
                 if (bone = ani.GetBoneTransform((HumanBodyBones)validNums[i]))
                 {
-                    action(bone,validNums[i]);
+                    action(bone, validNums[i]);
                 }
             }
         }
 
-        public static void IterateBoneTransforms(Animator ani,Animator ani2, System.Action<Transform,Transform,int> action,bool flipParts=false, List<int> except = null)
+        public static void IterateBoneTransforms(Animator ani, Animator ani2, System.Action<Transform, Transform, int> action, bool flipParts = false, List<int> except = null)
         {
-            
+
             List<int> validNums = new List<int>();
             for (int i = 0; i < 55; i++)
                 validNums.Add(i);
@@ -140,12 +180,12 @@ namespace DS_CommonMethods
                     if (currentNum > 38 && currentNum < 54)
                         variant = -15;
                 }
-                Transform source,target;
+                Transform source, target;
                 if (source = ani.GetBoneTransform((HumanBodyBones)currentNum))
                 {
-                    if (target = ani2.GetBoneTransform((HumanBodyBones)currentNum + variant)) 
+                    if (target = ani2.GetBoneTransform((HumanBodyBones)currentNum + variant))
                     {
-                        action(source,target,currentNum);
+                        action(source, target, currentNum);
                     }
                 }
             }
@@ -159,38 +199,37 @@ namespace DS_CommonMethods
         {
             return AssetDatabase.LoadAssetAtPath<AnimatorController>(AssetDatabase.GetAssetPath(controller));
         }
-        public static AnimatorController ReplaceController(this RuntimeAnimatorController controller, string copyPath, bool ReplaceAnimations, Dictionary<Motion, Motion> motionDict = null, System.Action<Motion> motionAction = null)
+        public static AnimatorController ReplaceController(RuntimeAnimatorController controller, string copyPath, System.Action<Motion> motionAction = null, Dictionary<Motion, Motion> motionDict = null)
         {
             if (motionDict == null)
                 motionDict = new Dictionary<Motion, Motion>();
 
-            AnimatorController newCon = CopyAssetAndReturn<AnimatorController>(controller.GetController(), AssetDatabase.GenerateUniqueAssetPath(copyPath + "/" + controller.name + ".controller"));
+            AnimatorController newCon = CopyAssetAndReturn<AnimatorController>(controller, AssetDatabase.GenerateUniqueAssetPath(copyPath + "/" + controller.name + ".controller"));
 
-            if (ReplaceAnimations)
-            {
-                foreach (AnimatorControllerLayer layer in newCon.layers)
-                    ReplaceMachine(layer.stateMachine, copyPath, motionDict, motionAction);
-            }
+            foreach (AnimatorControllerLayer layer in newCon.layers)
+                ReplaceMachine(layer.stateMachine, copyPath, motionAction, motionDict);
+
             return newCon;
         }
 
-        public static void ReplaceMachine(AnimatorStateMachine machine, string copyPath, Dictionary<Motion, Motion> motionDict = null, System.Action<Motion> motionAction = null)
+        public static void ReplaceMachine(AnimatorStateMachine machine, string copyPath, System.Action<Motion> motionAction = null, Dictionary<Motion, Motion> motionDict = null, bool deep = true)
         {
             foreach (ChildAnimatorState childState in machine.states)
             {
                 if (childState.state.motion != null)
                 {
-                    childState.state.motion = ReplaceMotion(childState.state.motion, copyPath, motionDict, motionAction);
+                    childState.state.motion = ReplaceMotion(childState.state.motion, copyPath, motionAction, motionDict);
                 }
             }
-            foreach (ChildAnimatorStateMachine childMachine in machine.stateMachines)
-            {
-                if (childMachine.stateMachine != machine)
-                    ReplaceMachine(childMachine.stateMachine, copyPath, motionDict, motionAction);
-            }
+            if (deep)
+                foreach (ChildAnimatorStateMachine childMachine in machine.stateMachines)
+                {
+                    if (childMachine.stateMachine != machine)
+                        ReplaceMachine(childMachine.stateMachine, copyPath, motionAction, motionDict);
+                }
         }
 
-        public static Motion ReplaceMotion(Motion motion, string copyPath, Dictionary<Motion, Motion> motionDict = null, System.Action<Motion> motionAction = null)
+        public static Motion ReplaceMotion(Motion motion, string folderPath, System.Action<Motion> motionAction = null, Dictionary<Motion, Motion> motionDict = null)
         {
             if (motionDict != null)
                 if (motionDict.ContainsKey(motion))
@@ -198,7 +237,7 @@ namespace DS_CommonMethods
 
             if (motion is AnimationClip)
             {
-                AnimationClip newMotion = CopyAssetAndReturn<AnimationClip>(motion, AssetDatabase.GenerateUniqueAssetPath(copyPath + "/" + motion.name + ".anim"));
+                AnimationClip newMotion = CopyAssetAndReturn<AnimationClip>(motion, AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + motion.name + ".anim"));
                 motionAction?.Invoke(newMotion);
 
                 if (motionDict != null)
@@ -215,7 +254,7 @@ namespace DS_CommonMethods
 
                     if (newMotion)
                     {
-                        string newAssetPath = AssetDatabase.GenerateUniqueAssetPath(copyPath + "/" + motion.name + ".blendtree");
+                        string newAssetPath = AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + motion.name + ".blendtree");
                         newMotion = CopyAssetAndReturn<BlendTree>(treepath, newAssetPath);
                     }
                     else
@@ -227,7 +266,7 @@ namespace DS_CommonMethods
                     for (int i = 0; i < newMotion.children.Length; i++)
                     {
                         if (newChildren[i].motion)
-                            newChildren[i].motion = ReplaceMotion(newMotion.children[i].motion, copyPath, motionDict, motionAction);
+                            newChildren[i].motion = ReplaceMotion(newMotion.children[i].motion, folderPath, motionAction, motionDict);
                     }
                     newMotion.children = newChildren;
                     motionDict.Add(motion, newMotion);
@@ -236,6 +275,30 @@ namespace DS_CommonMethods
                 }
             }
             return null;
+        }
+
+        public static void IterateStates(this AnimatorController con, System.Action<AnimatorState> action)
+        {
+            foreach (AnimatorControllerLayer layer in con.layers)
+                IterateStates(layer.stateMachine, action, true);
+        }
+        public static void IterateStates(this AnimatorStateMachine machine, System.Action<AnimatorState> action, bool deep = true)
+        {
+            foreach (ChildAnimatorState childState in machine.states)
+                action(childState.state);
+            if (deep)
+            {
+                foreach (ChildAnimatorStateMachine childmachine in machine.stateMachines)
+                    if (childmachine.stateMachine != machine)
+                        IterateStates(childmachine.stateMachine, action, true);
+            }
+        }
+        public static void IterateAnimations(this Motion myMotion, System.Action<Motion> action)
+        {
+            if (myMotion is BlendTree tree)
+                foreach (ChildMotion motion in tree.children)
+                    action(motion.motion);
+            else action(myMotion);
         }
 
         /// <param name="parameter">The Name of the AnimatorParameter</param>
@@ -268,7 +331,7 @@ namespace DS_CommonMethods
             return false;
         }
 
-        
+
 
         /// <summary>
         /// Creates Layer before adding it, allowing you to modify parameters beforehand such as Layer Weight.
@@ -302,21 +365,21 @@ namespace DS_CommonMethods
         }
 
 
-        public static void GetUsedValues(AnimatorController controller, string parameter, ref bool[] array)
+        public static void GetUsedValues(this AnimatorController controller, string parameter, ref bool[] array)
         {
             foreach (AnimatorControllerLayer layer in controller.layers)
             {
                 GetUsedValues(layer.stateMachine, parameter, ref array);
             }
         }
-        public static void GetUsedValues(AnimatorStateMachine machine, string parameter, ref bool[] array)
+        public static void GetUsedValues(this AnimatorStateMachine machine, string parameter, ref bool[] array, bool nested = true)
         {
             foreach (AnimatorTransitionBase transition in machine.entryTransitions)
             {
                 foreach (AnimatorCondition condition in transition.conditions)
                 {
                     if (condition.parameter == parameter)
-                        if (condition.threshold < 255)
+                        if (condition.threshold < 256)
                             array[(int)condition.threshold] = true;
                 }
             }
@@ -325,7 +388,7 @@ namespace DS_CommonMethods
                 foreach (AnimatorCondition condition in transition.conditions)
                 {
                     if (condition.parameter == parameter)
-                        if (condition.threshold < 255)
+                        if (condition.threshold < 256)
                             array[(int)condition.threshold] = true;
                 }
             }
@@ -336,15 +399,18 @@ namespace DS_CommonMethods
                     foreach (AnimatorCondition condition in transition.conditions)
                     {
                         if (condition.parameter == parameter)
-                            if (condition.threshold < 255)
+                            if (condition.threshold < 256)
                                 array[(int)condition.threshold] = true;
                     }
                 }
             }
-            foreach (ChildAnimatorStateMachine submachine in machine.stateMachines)
+            if (nested)
             {
-                if (machine != submachine.stateMachine)
-                    GetUsedValues(submachine.stateMachine, parameter, ref array);
+                foreach (ChildAnimatorStateMachine submachine in machine.stateMachines)
+                {
+                    if (machine != submachine.stateMachine)
+                        GetUsedValues(submachine.stateMachine, parameter, ref array);
+                }
             }
         }
 
@@ -424,25 +490,44 @@ namespace DS_CommonMethods
         }
 
         //Add Condition to transition
-        public static T AddCondition<T>(this T transition, AnimatorCondition condition) where T : AnimatorTransitionBase
-        {
-            transition.AddCondition(condition.mode, condition.threshold, condition.parameter);
-            return transition;
-        }
-
-        //Add Condition Array to transition
-        public static void AddConditions(this AnimatorTransitionBase transition, AnimatorCondition[] conditions)
+        public static T AddCondition<T>(this T transition, params AnimatorCondition[] conditions) where T : AnimatorTransitionBase
         {
             for (int i = 0; i < conditions.Length; i++)
-            {
-                transition.AddCondition(conditions[i]);
-            }
+                transition.AddCondition(conditions[i].mode, conditions[i].threshold, conditions[i].parameter);
+            return transition;
         }
         #endregion
         #endregion
 
         #region ComponentMethods
+        public static List<Transform> GetDBones(Component bone, bool ignoreExclusions = false)
+        {
+            SerializedObject sbone = new SerializedObject(bone);
+            SerializedProperty excProp = sbone.FindProperty("m_Exclusions");
+            Transform[] exclusions = new Transform[excProp.arraySize];
+            for (int i = 0; i < excProp.arraySize; i++)
+                exclusions[i] = (Transform)excProp.GetArrayElementAtIndex(i).objectReferenceValue;
+            Transform root = (Transform)sbone.FindProperty("m_Root").objectReferenceValue;
+            if (!root)
+                return new List<Transform>();
 
+            List<Transform> dbones = new List<Transform>();
+            System.Action<Transform> iterateBones = null;
+            iterateBones = (t) =>
+            {
+                if (!ignoreExclusions)
+                    for (int i = 0; i < exclusions.Length; i++)
+                        if (t == exclusions[i])
+                            return;
+                dbones.Add(t);
+                for (int i = 0; i < t.childCount; i++)
+                    iterateBones(t.GetChild(i));
+            };
+
+            iterateBones(root);
+
+            return dbones;
+        }
 
         public static void LockConstraints(HashSet<IConstraint> cons, bool clear = true)
         {
@@ -452,7 +537,7 @@ namespace DS_CommonMethods
                 cons.Clear();
         }
 
-        public static PositionConstraint PositionConstrain(GameObject source, GameObject target,HashSet<IConstraint> cons=null, Axis axis = Axis.X | Axis.Y | Axis.Z, float w = 1)
+        public static PositionConstraint PositionConstrain(GameObject source, GameObject target, HashSet<IConstraint> cons = null, Axis axis = Axis.X | Axis.Y | Axis.Z, float w = 1)
         {
             PositionConstraint con;
             if (!(con = source.GetComponent<PositionConstraint>()))
@@ -471,7 +556,7 @@ namespace DS_CommonMethods
             return con;
         }
 
-        public static RotationConstraint RotationConstrain(GameObject source, GameObject target, HashSet<IConstraint> cons=null, Axis axis = Axis.X | Axis.Y | Axis.Z, float w = 1)
+        public static RotationConstraint RotationConstrain(GameObject source, GameObject target, HashSet<IConstraint> cons = null, Axis axis = Axis.X | Axis.Y | Axis.Z, float w = 1)
         {
             RotationConstraint con;
             if (!(con = source.GetComponent<RotationConstraint>()))
@@ -504,7 +589,7 @@ namespace DS_CommonMethods
             return con;
         }
 
-        public static ParentConstraint ParentConstrain(GameObject source, GameObject target, HashSet<IConstraint> cons=null, Axis posAxis = Axis.X | Axis.Y | Axis.Z, Axis rotAxis = Axis.X | Axis.Y | Axis.Z, float w = 1)
+        public static ParentConstraint ParentConstrain(GameObject source, GameObject target, HashSet<IConstraint> cons = null, Axis posAxis = Axis.X | Axis.Y | Axis.Z, Axis rotAxis = Axis.X | Axis.Y | Axis.Z, float w = 1)
         {
             ParentConstraint con;
             if (!(con = source.GetComponent<ParentConstraint>()))
@@ -529,16 +614,14 @@ namespace DS_CommonMethods
 
         #region GUIMethods
         /// <summary>
-        /// Automatically lays out the Asset Path GUI for a given string
         /// Opens Folder Panel and restricts you to choose a Folder within Assets, otherwise returns Empty.
         /// Automatically cuts System path and only returns the path starting from Assets.
         /// Saves new chosen path to PlayerPrefs under the "playerpref" key.
         /// </summary>
-        /// <param name="variable">Variable to save new path to</param>
         /// <param name="title">Title of the opened Panel</param>
         /// <param name="playerpref">Key of the PlayerPref to save to</param>
         /// <returns></returns>
-        public static void AssetFolderPath(ref string variable,string title, string playerpref)
+        public static void AssetFolderPath(ref string variable, string title, string playerpref)
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUI.BeginDisabledGroup(true);
@@ -595,6 +678,15 @@ namespace DS_CommonMethods
         }
         #endregion
 
+        public static readonly Dictionary<System.Type, string> typeExtension = new Dictionary<System.Type, string>()
+        {
+            {typeof(AnimatorController),".controller"},
+            {typeof(AnimationClip),".anim" },
+            {typeof(BlendTree),".blendtree" },
+            {typeof(Material),".mat" },
+            {typeof(Shader),".shader" },
+            {typeof(Texture),".png" },
+        };
         public static readonly Dictionary<int, int> armatureHierarchy = new Dictionary<int, int>
     {
         {0,0},
@@ -655,4 +747,6 @@ namespace DS_CommonMethods
         {55,0 }
     };
     }
+
 }
+#endif
