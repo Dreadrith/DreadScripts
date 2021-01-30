@@ -1,4 +1,5 @@
-![ShowCase](https://cdn.discordapp.com/attachments/730948197517885532/804904504834916392/PasswordCreator2.mp4)
+Showcase:
+https://cdn.discordapp.com/attachments/730948197517885532/804904504834916392/PasswordCreator2.mp4
 
 Feature Release
 Latest Version: v2.1.1
