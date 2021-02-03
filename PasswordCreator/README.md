@@ -2,7 +2,9 @@ Showcase:
 https://cdn.discordapp.com/attachments/730948197517885532/804904504834916392/PasswordCreator2.mp4
 
 Feature Release
+
 Latest Version: v2.2.1
+
 Last Updated: 02/01/2021
 
 # Password Creator
