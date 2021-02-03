@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 using VRC.SDK3.Avatars.Components;
 using VRC.SDK3.Avatars.ScriptableObjects;
 using VRC.SDKBase;
@@ -7,12 +7,36 @@ using System.Linq;
 using DS_CommonMethods;
 using UnityEditor;
 using UnityEngine;
+
+
 using System.Collections.Generic;
 
 namespace DS_VRCCommonMethods
 {
+   
     public static class DSVRCCommonMethods
     {
+
+        public static readonly string[] builtinParameters = new string[] {
+    "IsLocal",
+    "Viseme",
+    "GestureLeft",
+    "GestureRight",
+    "GestureLeftWeight",
+    "GestureRightWeight",
+    "AngularY",
+    "VelocityX",
+    "VelocityZ",
+    "Upright",
+    "Grounded",
+    "Seated",
+    "AFK",
+    "TrackingType",
+    "VRMode",
+    "MuteSelf",
+    "InStation"
+        };
+
         /// <summary>
         /// Changes all the Tracking Parts of the behaviour to the specified type.
         /// </summary>
@@ -109,7 +133,7 @@ namespace DS_VRCCommonMethods
             return -1;
         }
 
-        public static bool[] GetUsedValues(this VRCAvatarDescriptor avi, string parameter, bool nested = true)
+        public static bool[] GetUsedValues(this VRCAvatarDescriptor avi, string parameter,bool nested=true)
         {
             bool[] usedValues = new bool[256];
 
@@ -121,7 +145,7 @@ namespace DS_VRCCommonMethods
             }
             if (nested)
             {
-                foreach (Animator anim in avi.gameObject.GetComponentsInChildren<Animator>(true))
+                foreach(Animator anim in avi.gameObject.GetComponentsInChildren<Animator>(true))
                 {
                     AnimatorController subController = anim.runtimeAnimatorController?.GetController();
                     if (subController)
@@ -132,7 +156,7 @@ namespace DS_VRCCommonMethods
             return usedValues;
         }
 
-        public static AnimatorController[] ReplaceControllers(VRCAvatarDescriptor avi, string folderPath, System.Action<Motion> motionAction = null, Dictionary<Motion, Motion> motionDict = null, bool nested = true)
+        public static AnimatorController[] ReplaceControllers(VRCAvatarDescriptor avi, string folderPath, System.Action<Motion> motionAction = null, Dictionary<Motion, Motion> motionDict=null, bool nested = true)
         {
             DSCommonMethods.RecreateFolders(folderPath);
             List<AnimatorController> controllers = new List<AnimatorController>();
@@ -178,31 +202,91 @@ namespace DS_VRCCommonMethods
             return controllers.ToArray();
         }
 
-        public static bool AddControls(VRCExpressionsMenu target, List<VRCExpressionsMenu.Control> newCons, string suffix = "")
-        {
-            if (8 - newCons.Count < 0)
-                return false;
-            for (int i = 0; i < newCons.Count; i++)
-            {
-                newCons[i].name += suffix;
-                target.controls.Add(newCons[i]);
-            }
+        
 
-            EditorUtility.SetDirty(target);
-            return true;
+        public static List<VRCExpressionsMenu.Control> GetControls(this VRCExpressionsMenu source, params int[] except)
+        {
+            List<VRCExpressionsMenu.Control> newCons = new List<VRCExpressionsMenu.Control>();
+            for (int i=0;i<source.controls.Count;i++)
+            {
+                VRCExpressionsMenu.Control c = source.controls[i];
+                if (except != null)
+                    if (except.Contains(i))
+                        continue;
+                VRCExpressionsMenu.Control.Parameter[] newSubParams = new VRCExpressionsMenu.Control.Parameter[c.subParameters.Length];
+                for (int j=0;j<newSubParams.Length;j++)
+                {
+                    newSubParams[j] = new VRCExpressionsMenu.Control.Parameter() { name = c.subParameters[j].name };
+                }
+                VRCExpressionsMenu.Control newCon = new VRCExpressionsMenu.Control() { icon = c.icon, name = c.name, parameter = new VRCExpressionsMenu.Control.Parameter() { name = c.parameter.name }, style = c.style, subMenu = c.subMenu, subParameters = newSubParams, type = c.type, value = c.value };
+                
+                newCons.Add(newCon);
+            }
+            return newCons;
         }
 
-        public static List<VRCExpressionParameters.Parameter> GetParameters(VRCExpressionParameters paramObject)
+        public static bool CheckControls(this VRCExpressionsMenu target, List<VRCExpressionsMenu.Control> newCons,bool debug=true)
+        {
+            if (!target)
+                return true;
+
+            if (target.controls.Count + newCons.Count > 8)
+            {
+                if (debug)
+                    Debug.LogError(target.name + " does not have enough free control slots to contain "+newCons.Count+" more controls!");
+                return false;
+            }
+            else
+                return true;
+        }
+
+        public static void AddControls(this VRCExpressionsMenu target, List<VRCExpressionsMenu.Control> newCons,string suffix="")
+        {
+            for (int i = 0; i < newCons.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(suffix))
+                {
+                    newCons[i].name += suffix;
+                    newCons[i].parameter.name += suffix;
+                    VRCExpressionsMenu.Control.Parameter[] newSubParams = new VRCExpressionsMenu.Control.Parameter[newCons[i].subParameters.Length];
+                    for (int j = 0; j < newCons[j].subParameters.Length; j++)
+                    {
+                        newSubParams[j] = newCons[i].subParameters[j];
+                        newSubParams[j].name += suffix;
+                    }
+                    newCons[i].subParameters = newSubParams;
+                }
+
+                target.controls.Add(newCons[i]);
+            }
+            EditorUtility.SetDirty(target);
+        }
+
+        public static List<VRCExpressionParameters.Parameter> GetParameters(this VRCExpressionParameters source,params int[] except)
         {
             List<VRCExpressionParameters.Parameter> myParams = new List<VRCExpressionParameters.Parameter>();
-            for (int i = 0; i < paramObject.parameters.Length; i++)
-                if (!string.IsNullOrEmpty(paramObject.parameters[i].name))
-                    myParams.Add(paramObject.parameters[i]);
+            for (int i = 0; i < source.parameters.Length; i++)
+            {
+                if (except != null)
+                    if (except.Contains(i))
+                        continue;
+
+                if (!string.IsNullOrEmpty(source.parameters[i].name))
+                {
+                    VRCExpressionParameters.Parameter p = source.parameters[i];
+                    VRCExpressionParameters.Parameter newParam = new VRCExpressionParameters.Parameter() { defaultValue = p.defaultValue, name = p.name, saved = p.saved, valueType = p.valueType };
+                    myParams.Add(newParam);
+                }
+                
+            }
             return myParams;
         }
 
-        public static bool CheckParameters(this VRCExpressionParameters target, List<VRCExpressionParameters.Parameter> newParams)
+        public static bool CheckParameters(this VRCExpressionParameters target, List<VRCExpressionParameters.Parameter> newParams,bool debug=true)
         {
+            if (!target)
+                return true;
+
             int cost = 0;
             for (int i = 0; i < newParams.Count; i++)
             {
@@ -211,31 +295,119 @@ namespace DS_VRCCommonMethods
                 else
                     cost += 8;
             }
+
             if (target.CalcTotalCost() + cost > 128)
+            {
+                if (debug)
+                    Debug.LogError(target.name + "requires "+cost+" more free memory to contain the new parameters!");
                 return false;
+            }
             else
                 return true;
         }
 
-        public static void AddParameters(this VRCExpressionParameters target, List<VRCExpressionParameters.Parameter> newParams, string suffix = "")
+        public static bool CheckParameters(this VRCExpressionParameters target, int cost, bool debug = true)
         {
-            if (!target.CheckParameters(newParams))
-            {
-                Debug.LogError("Expression Parameters " + target.name + " Does not have enough free Memory to hold the new parameters!");
-                return;
-            }
+            if (!target)
+                return true;
+            if (target.parameters == null)
+                return true;
+            if (target.parameters.Length == 0)
+                return true;
 
+            if (target.CalcTotalCost() + cost > 128)
+            {
+                if (debug)
+                    UnityEngine.Debug.LogError(target.name + "requires " + cost + " more free memory to contain the new parameters!");
+                return false;
+            }
+            else
+                return true;
+        }
+
+        public static void AddParameters(this VRCExpressionParameters target, List<VRCExpressionParameters.Parameter> newParams, string suffix="")
+        {
             if (!string.IsNullOrEmpty(suffix))
             {
-                for (int i = 0; i < newParams.Count; i++)
+                for (int i=0;i<newParams.Count;i++)
                 {
                     newParams[i].name += suffix;
                 }
             }
 
-            target.parameters = target.parameters.Concat(newParams).ToArray();
+            if (target.parameters == null)
+                target.parameters = newParams.ToArray();
+            else
+                target.parameters = target.parameters.Concat(newParams).ToArray();
 
             EditorUtility.SetDirty(target);
+        }
+
+        public static VRCExpressionParameters ReplaceParameters(this VRCAvatarDescriptor avi, string folderPath)
+        {
+            avi.customExpressions = true;
+            if (avi.expressionParameters)
+            {
+                avi.expressionParameters = DSCommonMethods.CopyAssetAndReturn<VRCExpressionParameters>(avi.expressionParameters, AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + avi.expressionParameters.name + ".asset"));
+                return avi.expressionParameters;
+            }
+            else
+            {
+                VRCExpressionParameters newParameters = ScriptableObject.CreateInstance<VRCExpressionParameters>();
+                AssetDatabase.CreateAsset(newParameters, AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + avi.gameObject.name + " Parameters.asset"));
+                AssetDatabase.SaveAssets();
+                avi.expressionParameters = newParameters;
+                avi.customExpressions = true;
+                return newParameters;
+            }
+        }
+
+        public static VRCExpressionsMenu ReplaceMenu(this VRCAvatarDescriptor avi, string folderPath, bool deep = false, System.Action<VRCExpressionsMenu.Control> action = null)
+        {
+            avi.customExpressions = true;
+            if (avi.expressionsMenu)
+            {
+                avi.expressionsMenu = ReplaceMenu(avi.expressionsMenu, folderPath, deep, action);
+                return avi.expressionsMenu;
+            }
+            else
+            {
+                VRCExpressionsMenu newMenu = ScriptableObject.CreateInstance<VRCExpressionsMenu>();
+                AssetDatabase.CreateAsset(newMenu, AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + avi.gameObject.name + " Menu.asset"));
+                avi.expressionsMenu = newMenu;
+                avi.customExpressions = true;
+                return newMenu;
+            }
+        }
+        public static VRCExpressionsMenu ReplaceMenu(VRCExpressionsMenu menu, string folderPath, bool deep = true, System.Action<VRCExpressionsMenu.Control> action = null, Dictionary<VRCExpressionsMenu, VRCExpressionsMenu> copyDict = null)
+        {
+            if (!menu)
+                return null;
+            if (copyDict == null)
+                copyDict = new Dictionary<VRCExpressionsMenu, VRCExpressionsMenu>();
+            VRCExpressionsMenu newMenu;
+            if (copyDict.ContainsKey(menu))
+                newMenu = copyDict[menu];
+            else
+            {
+                newMenu = DSCommonMethods.CopyAssetAndReturn<VRCExpressionsMenu>(menu, AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + menu.name + ".asset"));
+                copyDict.Add(menu, newMenu);
+                if (action != null || deep)
+                {
+                    for (int i = 0; i < newMenu.controls.Count; i++)
+                    {
+                        if (deep)
+                        {
+                            if (newMenu.controls[i].type == VRCExpressionsMenu.Control.ControlType.SubMenu && newMenu.controls[i].subMenu != null)
+                                newMenu.controls[i].subMenu = ReplaceMenu(newMenu.controls[i].subMenu, folderPath, true, action, copyDict);
+                        }
+                        action?.Invoke(newMenu.controls[i]);
+
+                    }
+                    EditorUtility.SetDirty(newMenu);
+                }
+            }
+            return newMenu;
         }
 
         public static AnimatorController GetPlayableLayer(this VRCAvatarDescriptor avi, VRCAvatarDescriptor.AnimLayerType type)
@@ -250,7 +422,7 @@ namespace DS_VRCCommonMethods
 
             return null;
         }
-        public static bool SetPlayableLayer(this VRCAvatarDescriptor avi, VRCAvatarDescriptor.AnimLayerType type, RuntimeAnimatorController ani)
+        public static bool SetPlayableLayer(this VRCAvatarDescriptor avi, VRCAvatarDescriptor.AnimLayerType type,RuntimeAnimatorController ani)
         {
             for (int i = 0; i < avi.baseAnimationLayers.Length; i++)
                 if (avi.baseAnimationLayers[i].type == type)
@@ -275,8 +447,6 @@ namespace DS_VRCCommonMethods
             return false;
         }
     }
-
-
 
     public class VRCAvatarDescriptorInfo
     {
