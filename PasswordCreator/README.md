@@ -1,5 +1,6 @@
 Showcase:
-https://cdn.discordapp.com/attachments/730948197517885532/804904504834916392/PasswordCreator2.mp4
+
+[![Password Creator](http://img.youtube.com/vi/D8H2ZRW3mfI/0.jpg)](http://www.youtube.com/watch?v=D8H2ZRW3mfI "Password Creator")
 
 Feature Release
 
