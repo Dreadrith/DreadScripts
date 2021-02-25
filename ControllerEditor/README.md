@@ -8,6 +8,8 @@ Last Updated: 26/02/2021
 
 # Controller Editor
 Ease of use, organized layout, and best functionality: <b>Controller Editor</b> is made with those in mind. Hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks.  
+![TransitionsEdit](https://github.com/Dreadrith/DreadScripts/blob/main/ControllerEditor/Info_Images/TransitionEdit.gif)
+
 Controller Editor has a lot of features which can be used to achieve that, best of which are:
 
 ~ Transitions:
@@ -28,3 +30,5 @@ Controller Editor has a lot of features which can be used to achieve that, best 
 
 And a bunch more.  
 Full functions list and details: https://pastebin.com/GzVTabRB
+
+If you're interested or want to read more about this, check it out on my Discord server: https://discord.gg/ZsPfrGn
