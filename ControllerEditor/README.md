@@ -2,9 +2,12 @@ Showcase:
 
 [![Password Creator](http://img.youtube.com/vi/uoI9qw4K8fI/0.jpg)](http://www.youtube.com/watch?v=uoI9qw4K8fI "Controller Editor")
 
-# Controller Editor
-Ease of use, organized layout, and best functionality: <b>Controller Editor</b> is made with those in mind. Hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks. 
+Utility Release  
+Latest Version: v2.0.0  
+Last Updated: 26/02/2021  
 
+# Controller Editor
+Ease of use, organized layout, and best functionality: <b>Controller Editor</b> is made with those in mind. Hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks.  
 Controller Editor has a lot of features which can be used to achieve that, best of which are:
 
 ~ Transitions:
@@ -23,5 +26,5 @@ Controller Editor has a lot of features which can be used to achieve that, best 
 - Easily Replace Parameters names (Avatar P-Driver Parameter supported).
 - Manage Controller by adding tags to them.
 
-And a bunch more.
+And a bunch more.  
 Full functions list and details: https://pastebin.com/GzVTabRB
