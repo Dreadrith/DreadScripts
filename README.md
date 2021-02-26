@@ -18,7 +18,7 @@ Most scripts require the resources, Free scripts can use either <a href="https:/
 
 ## [Controller Editor](https://github.com/Dreadrith/DreadScripts/tree/main/ControllerEditor)
 <details>
-  <summary><b>Controller Editor<b> will hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks</summary>
+  <summary><b>Controller Editor</b> will hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks</summary>
     
     - Multi-Edit and Copy/Paste Transitions Settings and Conditions.
     - (VRChat) Multi-Edit Avatar Parameter Drivers Parameters.
