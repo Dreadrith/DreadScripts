@@ -31,4 +31,8 @@ Controller Editor has a lot of features which can be used to achieve that, best 
 And a bunch more.  
 Full functions list and details: https://pastebin.com/GzVTabRB
 
-If you're interested or want to read more about this, check it out on my Discord server: https://discord.gg/ZsPfrGn
+If you're interested or want to read more about this, check it out on my Discord server: https://discord.gg/ZsPfrGn  
+
+![](https://github.com/Dreadrith/DreadScripts/blob/main/ControllerEditor/Info_Images/ReverseTransitions.gif)  
+![](https://github.com/Dreadrith/DreadScripts/blob/main/ControllerEditor/Info_Images/MakeTransitions.gif)  
+![](https://github.com/Dreadrith/DreadScripts/blob/main/ControllerEditor/Info_Images/RemakeTransitions.gif)  
