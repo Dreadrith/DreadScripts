@@ -1,8 +1,8 @@
 
   <h1 align="center"> DreadScripts</h1>
 <p align="center">DreadScripts are highly focused on simplifying the workflow and effort needed for Unity, mostly focused on VRChat.<br>
-Most scripts require the resources, Free scripts can use either <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_Resources.unitypackage">DS_Resources</a> or <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage">DS_DLLResources</a>
-. Paid scripts require <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage">DS_DLLResources</a></p>
+Most scripts require the resources, Free scripts can use either <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_Resources.unitypackage">DS_Resources</a> or <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage">DS_DLLResources</a>.<br>
+  Paid scripts always require the <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage">DS_DLLResources</a></p>
 
 
 <h1 align="center">Paid</h1>
