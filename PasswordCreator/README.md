@@ -4,7 +4,7 @@ Showcase:
 
 Feature Release
 
-Latest Version: v2.2.5
+Latest Version: v2.3.5
 
 Last Updated: 02/01/2021
 
