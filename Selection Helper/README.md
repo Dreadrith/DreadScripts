@@ -9,14 +9,14 @@ SelectionHelper:
 - Go to a Component on an object and Right Click > [SH] Choose Type. Right Click on a GameObject, Selection Helper > By Type > Children, Parents, or Filter Current Selection.
 - Adds Selection Helper > Select Immediate Children, to GameObjects, to Select the next level of Children of currently selected GameObjects
 
-![Type Object Selector](https://github.com/Dreadrith/DreadScripts/blob/SH-Update/Selection%20Helper/Info_Images/TOS.gif)
+![Type Object Selector](https://github.com/Dreadrith/DreadScripts/blob/main/Selection%20Helper/Info_Images/TOS.gif)
 
 SceneObjectSelector:
 --------------------
 Adds a small button to the top right of the Scene view. When clicked and enabled, will show a resizable sphere on each enabled object. This is useful for quickly selecting armature bones or managing empty objects.
 Right click the new button to open its settings window. Automatically ignores Dynamic Bones by default.
 
-![Scene Object Selector](https://github.com/Dreadrith/DreadScripts/blob/SH-Update/Selection%20Helper/Info_Images/SOS.gif)
+![Scene Object Selector](https://github.com/Dreadrith/DreadScripts/blob/main/Selection%20Helper/Info_Images/SOS.gif)
 
 SaveSelection:
 --------------
