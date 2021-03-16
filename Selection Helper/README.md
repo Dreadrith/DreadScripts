@@ -2,7 +2,7 @@
 
 Selection Helper Package was made to make selecting certain objects easier and less tedious.
 
-Latest Version: v1.2.0
+Latest Version: v1.2.0  
 Download: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/SelectionHelper.unitypackage
 
 SelectionHelper:
