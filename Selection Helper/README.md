@@ -1,6 +1,8 @@
 # Selection Helper
 
-Selection Helper Package was made to make selecting certain objects easier and less tedious
+Selection Helper Package was made to make selecting certain objects easier and less tedious.
+
+Latest Version: v1.2.0
 
 SelectionHelper:
 ----------------
