@@ -1,85 +1,66 @@
 ﻿#if UNITY_EDITOR
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
 
-
-public class SelectDependencies : EditorWindow
+namespace DreadScripts
 {
-    //By Dreadrith#3238
-    //https://discord.gg/ZsPfrGn
-
-    [MenuItem("Assets/Selection Helper/Select Dependencies/No Shaders or Scripts", false, -10)]
-   private static void selectDependenciesNeither()
+    public class SelectDependencies
     {
-        Object[] myAssets = Selection.GetFiltered<Object>(SelectionMode.Assets);
-        HashSet<Object> files = new HashSet<Object>();
-        string[] ignoreExt = {".cs",".shader",".dll" };
-        foreach (Object obj in myAssets)
-           foreach(string path in AssetDatabase.GetDependencies(AssetDatabase.GetAssetPath(obj)))
-            {
-                bool ignore = false;
-                string myExt = path.Substring(path.LastIndexOf('.'),path.Length- path.LastIndexOf('.'));
-                foreach (string ext in ignoreExt)
-                    if (myExt == ext)
+        //By Dreadrith#3238
+        //https://discord.gg/ZsPfrGn
+
+        [MenuItem("Assets/Selection Helper/Select Dependencies/No Scripts", false, -10)]
+        private static void selectDependenciesSript()
+        {
+            selectDependencies(new string[] { ".cs", ".dll" });
+        }
+
+        [MenuItem("Assets/Selection Helper/Select Dependencies/No Shaders", false, -10)]
+        private static void selectDependenciesShader()
+        {
+            selectDependencies(new string[] { ".shader" });
+        }
+
+        [MenuItem("Assets/Selection Helper/Select Dependencies/No Shaders or Scripts", false, -10)]
+        private static void selectDependenciesNeither()
+        {
+            selectDependencies(new string[] { ".cs", ".dll", ".shader" });
+        }
+
+        [MenuItem("Assets/Selection Helper/Select Dependencies/No Rule", false, -10)]
+        private static void selectDependencies()
+        {
+            selectDependencies(null);
+        }
+        private static void selectDependencies(string[] ignoreExt = null)
+        {
+            Object[] myAssets = Selection.GetFiltered<Object>(SelectionMode.Assets);
+            HashSet<Object> files = new HashSet<Object>();
+            foreach (Object obj in myAssets)
+                foreach (string path in AssetDatabase.GetDependencies(AssetDatabase.GetAssetPath(obj)))
+                {
+                    if (ignoreExt != null)
                     {
-                        ignore = true;
-                        break;
+                        bool ignore = false;
+
+                        string myExt = path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'));
+                        foreach (string ext in ignoreExt)
+                            if (myExt == ext)
+                            {
+                                ignore = true;
+                                break;
+                            }
+
+                        if (!ignore)
+                            files.Add(AssetDatabase.LoadAssetAtPath<Object>(path));
                     }
-
-                if (!ignore)
-                    files.Add(AssetDatabase.LoadAssetAtPath<Object>(path));
-            }
-        Selection.objects = files.ToArray();
-    }
-
-    [MenuItem("Assets/Selection Helper/Select Dependencies/No Shaders", false, -10)]
-    private static void selectDependenciesShader()
-    {
-        Object[] myAssets = Selection.GetFiltered<Object>(SelectionMode.Assets);
-        HashSet<Object> files = new HashSet<Object>();
-        string[] ignoreExt = {".shader" };
-        foreach (Object obj in myAssets)
-            foreach (string path in AssetDatabase.GetDependencies(AssetDatabase.GetAssetPath(obj)))
-            {
-                bool ignore = false;
-                string myExt = path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'));
-                foreach (string ext in ignoreExt)
-                    if (myExt == ext)
-                    {
-                        ignore = true;
-                        break;
-                    }
-                if (!ignore)
-                    files.Add(AssetDatabase.LoadAssetAtPath<Object>(path));
-            }
-        Selection.objects = files.ToArray();
-    }
-
-    [MenuItem("Assets/Selection Helper/Select Dependencies/No Scripts", false, -10)]
-    private static void selectDependenciesSript()
-    {
-        Object[] myAssets = Selection.GetFiltered<Object>(SelectionMode.Assets);
-        HashSet<Object> files = new HashSet<Object>();
-        string[] ignoreExt = { ".cs", ".dll" };
-        foreach (Object obj in myAssets)
-            foreach (string path in AssetDatabase.GetDependencies(AssetDatabase.GetAssetPath(obj)))
-            {
-                bool ignore = false;
-                string myExt = path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'));
-                foreach (string ext in ignoreExt)
-                    if (myExt == ext)
-                    {
-                        ignore = true;
-                        break;
-                    }
-
-                if (!ignore)
-                    files.Add(AssetDatabase.LoadAssetAtPath<Object>(path));
-            }
-        Selection.objects = files.ToArray();
+                    else
+                        files.Add(AssetDatabase.LoadAssetAtPath<Object>(path));
+                }
+            Selection.objects = files.ToArray();
+        }
     }
 }
 #endif

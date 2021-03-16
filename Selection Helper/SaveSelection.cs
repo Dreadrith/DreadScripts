@@ -3,34 +3,29 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 
-public class SaveSelection : Editor
+namespace DreadScripts
 {
-    //By Dreadrith#3238
-    //https://discord.gg/ZsPfrGn
-
-    static Object[] oldSelection;
-
-    [MenuItem("Assets/Selection Helper/Save Selection")]
-    [MenuItem("GameObject/Selection Helper/Save Selection", false, 10)]
-    static void saveSelected()
+    public class SaveSelection
     {
-        oldSelection = Selection.GetFiltered<Object>(SelectionMode.OnlyUserModifiable);
-    }
+        //By Dreadrith#3238
+        //https://discord.gg/ZsPfrGn
 
-    [MenuItem("Assets/Selection Helper/Load Selection")]
-    [MenuItem("GameObject/Selection Helper/Load Selection", false, 10)]
-    static void loadSelected()
-    {
-        if (oldSelection != null)
-            Selection.objects = oldSelection;
-    }
+        static Object[] oldSelection;
 
-    [MenuItem("Assets/Selection Helper/Load Selection (ADD)")]
-    [MenuItem("GameObject/Selection Helper/Load Selection (ADD)", false, 10)]
-    static void loadSelectedC()
-    {
-        if (oldSelection != null)
-            Selection.objects = Selection.objects.Concat(oldSelection).ToArray();
+        [MenuItem("Assets/Selection Helper/Save Selection")]
+        [MenuItem("GameObject/Selection Helper/Save\\Load/Save Selection", false, 0)]
+        static void SaveSelected()
+        {
+            oldSelection = Selection.objects;
+        }
+
+        [MenuItem("Assets/Selection Helper/Load Selection")]
+        [MenuItem("GameObject/Selection Helper/Save\\Load/Load Selection", false, 1)]
+        static void LoadSelected()
+        {
+            if (oldSelection != null)
+                Selection.objects = Selection.objects.Concat(oldSelection).ToArray();
+        }
     }
 }
 #endif
