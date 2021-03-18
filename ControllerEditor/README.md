@@ -3,7 +3,7 @@ Showcase:
 [![Password Creator](http://img.youtube.com/vi/uoI9qw4K8fI/0.jpg)](http://www.youtube.com/watch?v=uoI9qw4K8fI "Controller Editor")
 
 Utility Release  
-Latest Version: v2.0.0  
+Latest Version: v2.1.0  
 Last Updated: 26/02/2021  
 
 # Controller Editor
