@@ -10,7 +10,7 @@ Using this tool will make a duplicate of your Object and replaces all its Materi
 ![Creation](https://github.com/Dreadrith/DreadScripts/blob/main/Duplicate%20With%20Materials/info_image/newmats.gif)
 
 # Settings
-You can choose where to save the generated materials using its Settings Window found under DreadTools > Scripts Settings > Dupe With Mats.
+You can choose where to save the generated materials using its Settings Window.
 There is also an option to force each material slot to have its own unique Material rather than Maintaining common materials by checking "Separate Shared Materials".
 
 # Extra
