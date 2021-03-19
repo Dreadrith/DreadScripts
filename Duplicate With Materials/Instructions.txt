@@ -1,0 +1,16 @@
+Made by Dreadrith#3238
+Server: https://discord.gg/ZsPfrGn
+
+Version: v1.0.0
+Link: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DupeWithMats.unitypackage
+
+Duplicate with Materials is made for the purpose of creating Variants of an Object/Avatar quickly by Duplicating the target and replacing its materials with a new copy of them.
+
+Steps:
+1- Open the window (DreadTools > Utilities > Dupe with Mats)
+2- Place your target in the Game Object field
+3- Press "Create Variant".
+
+This tool will duplicate your Target, replace all its materials and create a folder in the chosen path which contains the newly created materials.
+
+Separate Shared Materials option: Materials that are reused accross multiple renderers will instead have a separate material for each material slot.
