@@ -26,7 +26,9 @@ Most scripts require the <a href="https://github.com/Dreadrith/DreadScripts/rele
 </details>
 <h1 align="center">Free</h1>
 
-## [Quick Toggle](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/QuickToggle.unitypackage)
+## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
+Control your limbs through Puppet Control whether you're on PC or Half Body!
+## [Quick Toggle](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/QuickToggle.unitypackage)  
 Quickly generate clips that Enable or Disable GameObjects in your hierarchy.
 ## [Dupe With Mats](https://github.com/Dreadrith/DreadScripts/tree/main/Duplicate%20With%20Materials)  
 Instantly make new variations of an Avatar by duplicating and replacing each material.
