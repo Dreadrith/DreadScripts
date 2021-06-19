@@ -18,7 +18,7 @@ namespace DreadScripts
 #if DS_HASRESOURCES
         public static void CreateVariant(GameObject targetObject, string folderPath,bool separateSharedMaterials)
         {
-            folderPath = PlayerPrefs.GetString("DupeWithMatsPath", "DreadScripts/Duplicate With Materials/Generated Materials");
+            folderPath = PlayerPrefs.GetString("DupeWithMatsPath", "Assets/DreadScripts/Duplicate With Materials/Generated Materials");
             separateSharedMaterials = PlayerPrefs.GetInt("DupeWithMatsSep", 1) == 1;
             Dictionary<Material, Material> matDict = new Dictionary<Material, Material>();
 
