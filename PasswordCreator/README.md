@@ -4,9 +4,9 @@ Showcase:
 
 Feature Release
 
-Latest Version: v2.3.5
+Latest Version: v2.4.0
 
-Last Updated: 02/01/2021
+Last Updated: 06/26/2021
 
 # Password Creator
 
@@ -28,5 +28,5 @@ Password Creator is great for Creators!
 
 ![Modules](https://raw.githubusercontent.com/Dreadrith/DreadScripts/main/PasswordCreator/Info_Images/Modules.png)
 
-If you're interested or want to read more about this, 
-check it out on my Discord server: https://discord.gg/ZsPfrGn
+Buy on the Gumroad: https://dreadrith.gumroad.com/l/PWCreator
+If you want to read more about this, check it out on my Discord server: https://discord.gg/ZsPfrGn
