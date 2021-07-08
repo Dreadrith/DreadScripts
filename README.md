@@ -27,17 +27,19 @@ Most scripts require the <a href="https://github.com/Dreadrith/DreadScripts/rele
 <h1 align="center">Free</h1>
 
 ## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
-Control your limbs through Puppet Control whether you're on PC or Half Body!
+(VRChat) Control your limbs through Puppet Control whether you're on PC or Half Body!
+## [Texture Utility](https://github.com/Dreadrith/DreadScripts/tree/main/Texture%20Utility)  
+Various Tools and Scripts to speed up your workflow when it comes to Textures
 ## [Quick Toggle](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/QuickToggle.unitypackage)  
 Quickly generate clips that Enable or Disable GameObjects in your hierarchy.
 ## [Dupe With Mats](https://github.com/Dreadrith/DreadScripts/tree/main/Duplicate%20With%20Materials)  
 Instantly make new variations of an Avatar by duplicating and replacing each material.
 ## [Selection Helper](https://github.com/Dreadrith/DreadScripts/tree/main/Selection%20Helper)  
 Variety of functions to make selection easier, whether through the Scene or through the hierarchy
+## [Reset Avatar](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Reset.Avatar.unitypackage)  
+Reset your Avatar's pose as long as it's humanoid case you break it somehow, usually by recording animation.
 ## [Dreadomizer](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Dreadomizer.unitypackage)  
 (VRChat) Quickly create a new layer which has a randomizing state, and filled with the possible state cases of the parameter.
-## [Reset Avatar](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Reset.Avatar.unitypackage)  
-(VRChat) Reset your Avatar's pose as long as it's humanoid case you break it somehow, usually by recording animation.
 
 ## [Discord](https://discord.gg/ZsPfrGn)
 There are a bunch of other stuff on my <a href="https://discord.gg/ZsPfrGn">Discord</a>, including more free scripts, prefabs and others.  
