@@ -26,7 +26,8 @@ Password Creator is great for Creators!
 - You can use it to showcase a Demo/Trial Avatar, whose use time is limited or access to features is blocked, unless they know the password.
 - You can use it to limit the access to friends, supporters, patrons, or whoever you'd like by giving them the access code. If the Avatar gets cloned, they won't get to use it depending on how you lock it unless they know the code.
 
-![Modules](https://raw.githubusercontent.com/Dreadrith/DreadScripts/main/PasswordCreator/Info_Images/Modules.png)
-
-Buy on the Gumroad: https://dreadrith.gumroad.com/l/PWCreator
+Buy on the Gumroad: https://dreadrith.gumroad.com/l/PWCreator  
 If you want to read more about this, check it out on my Discord server: https://discord.gg/ZsPfrGn
+
+![Setup](https://github.com/Dreadrith/DreadScripts/blob/main/PasswordCreator/Info_Images/PWSetup.gif)
+![Modules](https://github.com/Dreadrith/DreadScripts/blob/main/PasswordCreator/Info_Images/PWSettings.gif)
