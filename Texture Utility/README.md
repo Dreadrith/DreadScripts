@@ -2,6 +2,7 @@
 
 <b>Utility Release</b>
 ----------------------
+<a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/TextureUtility.unitypackage">Download Here</a>  
 Texture Utility and Auto-Packer's purpose is to speed up the workflow by negating the need to use other softwares for mundane texture edits and achieve the desired results directly in Unity.
 
 Features:
