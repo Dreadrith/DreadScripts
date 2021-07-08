@@ -1,0 +1,45 @@
+Made by Dreadrith#3238
+Server: https://discord.gg/ZsPfrGn
+Github: https://github.com/Dreadrith/DreadScripts
+Gumroad: https://gumroad.com/Dreadrith
+
+Version: v2.0.0
+Download: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/TextureUtility.unitypackage
+
+Texture Auto-Packer is made to negate the need to have to go through texture packing by automatically detecting channels modifications and update the resulting texture
+
+How Auto-Packer works:
+----------------------
+Auto-Packer will usually initiate whenever a Texture gets imported, whether it's new, modified or re-imported.
+It checks the settings in the Auto-Packer window, and checks for changes in each module, and packs each texture that's marked as modified.
+
+An Auto-Packed Texture is marked as modified when:
+	- The Channel Textures doesn't match the hash of the textures the last time it got packed.
+	- The Channel selector was changed
+	- Invert toggle was clicked.
+
+Module Settings:
+----------------
+Used to determine what Auto-Packed Textures to check for channel modification
+Found under Assets > Create > DreadScripts > Auto-Packer Module
+
+An Auto-Packed Texture consists of 4 Channel Textures (RGBA) and a Packed Texture (Result)
+
+Add:		Creates a new Auto-Packed Texture
+Save As:	Determines the extension of the Packed Texture.
+Quality:	Only for JPG, determines the quality of the Packed Texture.
+
+RGBA: Determines which channel should be sampled for the respective color
+Invert: Inverts the sampled colors from the color texture.
+
+Force Pack: Packs the resulting texture regardless of modification. (Overwrites result texture).
+
+Window Settings
+---------------
+Used to modify the settings of the Auto-Packer.
+Found under DreadTools > Utilities > Texture Auto-Packer
+
+Active:			Determines whether the Auto-Packer should check for channel modifications and pack the result if needed.
+Active Modules:	The Modules that the Auto-Packer should lookup for textures to pack
+
+Force Check:	Initiates the Auto-Packer without having to trigger a texture import.

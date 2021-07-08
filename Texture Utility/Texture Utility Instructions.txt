@@ -1,0 +1,64 @@
+Made by Dreadrith#3238
+Server: https://discord.gg/ZsPfrGn
+Github: https://github.com/Dreadrith/DreadScripts
+Gumroad: https://gumroad.com/Dreadrith
+
+Version: v2.0.0
+Download: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/TextureUtility.unitypackage
+
+Texture Utility is made to make mundane and simple edits easier and quicker by doing it straight through Unity
+Found under DreadTools > Utilities > Texture Utility
+
+General Settings:
+-----------------
+Dimensions (W and H):	- Width and Height of the newly created Textures. Refresh Icon resets the dimensions to the currently set Main Texture. 
+						- Popup button is to select hardcoded preset dimensions.
+						- You can add your own in the script in Texture Utility > Editor > TextureUtility.cs. Simply add a new line to "DimensionPresets" with the same format.
+
+Save As:	- Choose whether to save as PNG or JPG. JPG is typically smaller than but doesn't support Transparency.
+			- If using JPG, use the slider to set the quality of it. Less quality is smaller size but smaller color range.
+
+Copy Import Settings:	- Newly Created Texture will derive its import settings from the referenced texture. Settings such as Max Size, Crunch, Compression, etc...
+Highlight Texture:		- Project / Assets window will automatically navigate to the folder where the new texture was created.
+
+
+Editing Tab: For Resize and Edits.
+------------
+Main:	- The Main texture the edits will be applied to.
+Mask:	- Defines the parts and factor of how and where the edits will be applied. Black is a factor of 0. White is a factor of 1.
+
+"M" Toggle:	- Chooses whether the module should be affected by the Mask.
+
+Invert:		- Inverts the Colors of the selected channels on the texture. R > Red, G > Green, B > Blue, A > Alpha. an R G B invert is the typical color invert.
+Saturate:	- (Very Wonky) Increases / Decreases the saturation of the texture. -1 will guarantee all colors are grayscale. +1 is Hell.
+Hue Shift:	- Shifts the Hue of the texture. +1 is a full round hue shift back to the same color.
+Colorize:	- Lerps the colors between the main texture and the target Texture / Color. 0 is no change. +1 is full on target colors.
+			- "T" Toggle switches the mode between Color and Texture. "A" Toggle chooses whether the Alpha of the target should be used.
+
+Press "Apply" to apply the edits. This will create a new texture with the same name in the same folder as the main texture with the desired edits.
+
+
+Creating Tab: For creating simple textures
+-------------
+Custom Dimensions:	- Choose to specify the dimensions of the newly created texture
+					- By default, Dimensions will be 4x4 for Solid Color, 256x4 for Horizontal Gradient, 4x256 for Vertical Gradient.
+
+Reverse Texture: - The colors of the created texture will be flipped.
+
+Texture Mode:	- Choose whether the texture is a solid color or a horizontal/vertical gradient.
+Color/Gradient:	- Choose your colors for the new texture.
+
+Save To:	- The folder where the textures will be created.
+
+Press "Create" to create the new texture. It will save the texture under the path specified in "Save To".
+
+
+Packing Tab: For Unpacking/Packing texture's channels (RGBA)
+------------
+Unpack:	- Choose the main texture then Press "Unpack".
+		- This will create 3-4 textures (RGB(A)) in the same folder as the main texture with their appropriate channel colors.
+
+Pack:	- Insert your channel colors that you wish to merge under their appropriate channels
+		- Invert Toggle will invert the colors of the channel before packing it.
+		- Note that only the appropriate color of the channel will be used. i.e: Blue Channel will use the Blue colors of the specified texture. Alpha channel will use the red colors of its given texture.
+		- Press "Pack" to pack the textures into 1 texture.
