@@ -1,7 +1,7 @@
 ![Controller Editor](https://cdn.discordapp.com/attachments/750900715693539438/874198637289308180/AllTransitioning.gif)
 
 Utility Release  
-Latest Version: v2.4.1 
+Latest Version: v2.4.1  
 Last Updated: 10/08/2021  
 
 # Controller Editor
