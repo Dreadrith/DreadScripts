@@ -1,8 +1,8 @@
 ![Controller Editor](https://cdn.discordapp.com/attachments/750900715693539438/874198637289308180/AllTransitioning.gif)
 
 Utility Release  
-Latest Version: v2.4.1  
-Last Updated: 10/08/2021  
+Latest Version: v2.4.3  
+Last Updated:  14/08/2021  
 
 # Controller Editor
 Ease of use, organized layout, and best functionality: <b>Controller Editor</b> is made with those in mind. Hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks.
