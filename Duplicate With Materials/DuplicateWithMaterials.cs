@@ -1,11 +1,9 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-#if DS_HASRESOURCES
-using DS_CommonMethods;
-#endif
 
 namespace DreadScripts
 {
@@ -15,14 +13,13 @@ namespace DreadScripts
         public static string targetPath;
         public static bool separateShared;
 
-#if DS_HASRESOURCES
-        public static void CreateVariant(GameObject targetObject, string folderPath,bool separateSharedMaterials)
-        {
-            folderPath = PlayerPrefs.GetString("DupeWithMatsPath", "Assets/DreadScripts/Duplicate With Materials/Generated Materials");
-            separateSharedMaterials = PlayerPrefs.GetInt("DupeWithMatsSep", 1) == 1;
-            Dictionary<Material, Material> matDict = new Dictionary<Material, Material>();
 
-            DSCommonMethods.RecreateFolders(folderPath);
+        public static void CreateVariant(GameObject targetObject)
+        {
+            string folderPath = PlayerPrefs.GetString("DupeWithMatsPath", "Assets/DreadScripts/Duplicate With Materials/Generated Materials");
+            bool separateSharedMaterials = PlayerPrefs.GetInt("DupeWithMatsSep", 1) == 1;
+            Dictionary<Material, Material> matDict = new Dictionary<Material, Material>();
+            ReadyPath(folderPath);
 
             string assetPath = "";
             string subFolderPath = "";
@@ -63,7 +60,7 @@ namespace DreadScripts
                         }
                         else
                         {
-                            newMaterials[j] = DSCommonMethods.CopyAssetAndReturn<Material>(matPath, AssetDatabase.GenerateUniqueAssetPath(subFolderPath + "/" + myRenderers[i].sharedMaterials[j].name + ".mat"));
+                            newMaterials[j] = CopyAssetAndReturn<Material>(matPath, AssetDatabase.GenerateUniqueAssetPath(subFolderPath + "/" + myRenderers[i].sharedMaterials[j].name + ".mat"));
                         }
                         if (!separateSharedMaterials)
                             matDict.Add(myRenderers[i].sharedMaterials[j], newMaterials[j]);
@@ -96,38 +93,63 @@ namespace DreadScripts
         }
         private void OnGUI()
         {
-            target = target.QuickField(true);
+            target = (GameObject)EditorGUILayout.ObjectField("Target", target, typeof(GameObject), true);
 
             separateShared = EditorGUILayout.Toggle(new GUIContent("Separate Shared Materials", "Force each material slot to have its own material."), separateShared);
 
             if (GUILayout.Button("Create Variant", "toolbarbutton"))
-                CreateVariant(target,targetPath,separateShared);
+                CreateVariant(target);
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-            DSCommonMethods.AssetFolderPath(ref targetPath, "New Materials Path", "DupeWithMatsPath");
-            DSCommonMethods.Credit();
+            AssetFolderPath(ref targetPath, "New Materials Path", "DupeWithMatsPath");
+            using (new GUILayout.HorizontalScope())
+            {
+                GUILayout.FlexibleSpace();
+                if (GUILayout.Button("Made By Dreadrith#3238","boldlabel"))
+                    Application.OpenURL("https://linktr.ee/Dreadrith");
+            }
         }
 
         private void OnEnable()
         {
             targetPath = PlayerPrefs.GetString("DupeWithMatsPath", "DreadScripts/Duplicate With Materials/Generated Materials");
         }
-#else
 
-    [MenuItem("DreadTools/Utilities/Dupe With Mats")]
-    public static void showWindow()
-    {
-        DuplicateWithMaterials win = GetWindow<DuplicateWithMaterials>(false, "Dupe With Mats", true);
-        win.minSize = new Vector2(400, 90);
-        win.maxSize = new Vector2(400, 90);
-    }
+        private static void ReadyPath(string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+        private static T CopyAssetAndReturn<T>(string path, string newpath) where T : Object
+        {
+            if (path != newpath)
+                AssetDatabase.CopyAsset(path, newpath);
+            return AssetDatabase.LoadAssetAtPath<T>(newpath);
 
-    private void OnGUI()
-    {
-        EditorGUILayout.HelpBox("Script requires DS_Resources! Download below", MessageType.Warning);
-        if (GUILayout.Button("Download Resources","toolbarbutton"))
-            Application.OpenURL("https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage");
-    }
-#endif
+        }
+        private static void AssetFolderPath(ref string variable,string title, string playerpref)
+        {
+            using (new GUILayout.HorizontalScope())
+            {
+                EditorGUI.BeginDisabledGroup(true);
+                EditorGUILayout.TextField(title, variable);
+                EditorGUI.EndDisabledGroup();
+                if (GUILayout.Button("...", GUILayout.Width(30)))
+                {
+                    var dummyPath = EditorUtility.OpenFolderPanel(title, AssetDatabase.IsValidFolder(variable) ? variable : string.Empty, string.Empty);
+                    if (string.IsNullOrEmpty(dummyPath))
+                        return;
+
+                    if (!dummyPath.StartsWith("Assets"))
+                    {
+                        Debug.LogWarning("New Path must be a folder within Assets!");
+                        return;
+                    }
+
+                    variable = FileUtil.GetProjectRelativePath(dummyPath);
+                    PlayerPrefs.SetString(playerpref, variable);
+                }
+            }
+        }
 
     }
 }
