@@ -1,6 +1,5 @@
 # Duplicate With Materials
-Latest Version: v1.0.0  
-Requires <a href=https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DS_DLLResources.unitypackage>Resources</a>!  
+Latest Version: v1.0.2  
 <a href=https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/DupeWithMats.unitypackage>Download Duplicate With Materials</a>
 
 Duplicate With Materials was made to instantly allow you to make new variations of an Avatar without having to go through each Renderer and replace its materials.
