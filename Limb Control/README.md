@@ -16,7 +16,7 @@ Using "Same Control" makes the selected limbs be controlled using the same Puppe
 You can also set your own BlendTree to move your limbs the way you want them to!
 Besides that, you can also add <b>Tracking Control</b> which allows you toggle individual parts' tracking.
 
-<b>Limb Control</b> is free and is available on my <a href="https://discord.gg/ZsPfrGn">Discord</a>!  
+<b>Limb Control</b> is free and is available on my <a href="https://dreadrith.gumroad.com/l/LBControl">Gumroad</a>!  
 Latest Version: v1.0.0  
 
 ![Window](https://cdn.discordapp.com/attachments/827652038477086770/827927027931676692/unknown.png)
