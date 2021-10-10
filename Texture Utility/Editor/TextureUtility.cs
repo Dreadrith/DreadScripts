@@ -447,7 +447,7 @@ namespace DreadScripts
                 {
                     UnpackTexture();
                 }
-               EditorGUI.EndDisabledGroup();
+                EditorGUI.EndDisabledGroup();
             }
 
 
