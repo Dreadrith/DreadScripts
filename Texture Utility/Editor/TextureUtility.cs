@@ -1029,6 +1029,7 @@ namespace DreadScripts
         public Texture2D texture;
         public bool invert;
         public ColorMode mode = ColorMode.Red;
+        public float defaultValue;
         public enum ColorMode
         {
             Red,
@@ -1067,34 +1068,47 @@ namespace DreadScripts
 
         public Texture2D GetChannelColors(int width, int height, out float[] colors, bool unloadTempTexture)
         {
-            if (!texture)
+            Texture2D textureToUse;
+            if (texture)
             {
-                colors = null;
-                return null;
+                textureToUse = texture; 
             }
             else
             {
-                Texture2D newTexture = TextureUtility.GetColors(texture, width, height, out Color[] myColors, unloadTempTexture);
-                colors = myColors.Select(c =>
-                {
-                    if (mode == ColorMode.Red)
-                        return c.r;
-                    if (mode == ColorMode.Green)
-                        return c.g;
-                    if (mode == ColorMode.Blue)
-                        return c.b;
-
-                    return c.a;
-                }).ToArray();
-                if (invert)
-                {
-                    for (int i = 0; i < colors.Length; i++)
-                    {
-                        colors[i] = 1 - colors[i];
-                    }
-                }
-                return newTexture;
+                textureToUse = new Texture2D(1, 1, TextureFormat.RGBA32, false, true);
+                textureToUse.SetPixel(0,0, new Color(defaultValue, defaultValue, defaultValue, 1));
+                textureToUse.Apply();
             }
+
+            Texture2D newTexture = TextureUtility.GetColors(textureToUse, width, height, out Color[] myColors, unloadTempTexture);
+            colors = myColors.Select(c =>
+            {
+                if (!texture)
+                    return c.r;
+                if (mode == ColorMode.Red)
+                    return c.r;
+                if (mode == ColorMode.Green)
+                    return c.g;
+                if (mode == ColorMode.Blue)
+                    return c.b;
+
+                return c.a;
+            }).ToArray();
+            if (invert)
+            {
+                for (int i = 0; i < colors.Length; i++)
+                {
+                    colors[i] = 1 - colors[i];
+                }
+            }
+
+            if (!texture && unloadTempTexture)
+            {
+                Object.DestroyImmediate(textureToUse);
+            }
+            
+            return newTexture;
+            
         }
 
         public void DrawGUI()
@@ -1143,6 +1157,8 @@ namespace DreadScripts
                     texture = (Texture2D)EditorGUILayout.ObjectField("", texture, typeof(Texture2D), false, GUILayout.Width(66));
                     GUILayout.FlexibleSpace();
                 }
+                GUILayout.Label("Default (0-1)");
+                defaultValue = GUILayout.HorizontalSlider(defaultValue, 0, 1, GUILayout.Height(20));
                 invert = GUILayout.Toggle(invert, "Invert", "toolbarbutton");
             }
         }
