@@ -12,8 +12,7 @@ namespace DreadScripts
 {
     public class TextureUtility : EditorWindow
     {
-        private readonly string[] DimensionPresets = new string[]
-        {
+        private readonly string[] DimensionPresets = {
             "128x128",
             "256x256",
             "512x512",
@@ -33,6 +32,9 @@ namespace DreadScripts
         private static bool copyImport = true;
         private static bool pingTexture = true;
 
+        private static bool rotating;
+        private static TexRotation rotationType;
+
         private static bool inverting;
         private static bool maskInvert=true;
         private static bool invertRedS = true, invertGreenS = true, invertBlueS = true, invertAlphaS;
@@ -41,11 +43,11 @@ namespace DreadScripts
         private static bool editingTab=true, packingTab,creatingTab;
 
         
-        private static ChannelTexture redChannel = new ChannelTexture("Red", 0);
-        private static ChannelTexture greenChannel = new ChannelTexture("Green", 1);
-        private static ChannelTexture blueChannel = new ChannelTexture("Blue", 2);
-        private static ChannelTexture alphaChannel = new ChannelTexture("Alpha", 0);
-        private static ChannelTexture[] channelTextures = new ChannelTexture[] {redChannel,greenChannel,blueChannel,alphaChannel };
+        private static readonly ChannelTexture redChannel = new ChannelTexture("Red", 0);
+        private static readonly ChannelTexture greenChannel = new ChannelTexture("Green", 1);
+        private static readonly ChannelTexture blueChannel = new ChannelTexture("Blue", 2);
+        private static readonly ChannelTexture alphaChannel = new ChannelTexture("Alpha", 0);
+        private static readonly ChannelTexture[] channelTextures = { redChannel, greenChannel, blueChannel, alphaChannel };
 
         private static bool hueShifting;
         private static bool maskHueShift=true;
@@ -71,6 +73,15 @@ namespace DreadScripts
             SaveAsPNG,
             SaveAsJPG,
             SaveAsTGA
+        }
+
+        public enum TexRotation
+        {
+            Clockwise90,
+            CClockwise90,
+            Rotate180,
+            FlipHorizontal,
+            FlipVertical
         }
 
         #region Creating Tab Variables
@@ -101,13 +112,12 @@ namespace DreadScripts
             }
 
             w.titleContent.image = titleTexture;
-            w.minSize = new Vector2(423, 225);
+            w.minSize = new Vector2(423, 253);
         }
 
         private void OnGUI()
         {
             originalGUIColor = GUI.backgroundColor;
-
             using (new GUILayout.HorizontalScope())
             {
                 bool c = editingTab;
@@ -144,19 +154,15 @@ namespace DreadScripts
             }
 
             if (editingTab)
-            {
                 DrawEditingTab();
-            }
+            
 
             if (creatingTab)
-            {
                 DrawCreatingTab();
-            }
 
             if (packingTab)
-            {
                 DrawPackingTab();
-            }
+
             Credit();
         }
 
@@ -189,6 +195,29 @@ namespace DreadScripts
 
                     using (new GUILayout.HorizontalScope("box"))
                     {
+                        if (!rotating)
+                        {
+                            SetColorIcon(rotating);
+                            rotating = GUILayout.Toggle(rotating, "Rotate", "toolbarbutton");
+                            GUI.backgroundColor = originalGUIColor;
+                        }
+                        else
+                        {
+                            SetColorIcon(rotating);
+                            rotating = GUILayout.Toggle(rotating, "", "toolbarbutton", GUILayout.Width(17), GUILayout.Height(17));
+                            GUI.backgroundColor = originalGUIColor;
+
+                            EditorGUI.BeginDisabledGroup(true);
+                            GUILayout.Toggle(true, "M", EditorStyles.miniButton, GUILayout.Width(21), GUILayout.Height(16));
+                            EditorGUI.EndDisabledGroup();
+
+                            GUILayout.Label("Rotate");
+                            rotationType = (TexRotation)EditorGUILayout.EnumPopup(GUIContent.none, rotationType);
+                        }
+                    }
+
+                    using (new GUILayout.HorizontalScope("box"))
+                    {
                         if (!inverting)
                         {
                             SetColorIcon(inverting);
@@ -201,7 +230,7 @@ namespace DreadScripts
                             inverting = GUILayout.Toggle(inverting, "", "toolbarbutton", GUILayout.Width(17), GUILayout.Height(17));
                             GUI.backgroundColor = originalGUIColor;
 
-                            maskInvert = GUILayout.Toggle(maskInvert, new GUIContent("M", "Use Mask"), EditorStyles.miniButton, GUILayout.Width(21), GUILayout.Height(16)); GUILayout.Label("Invert:");
+                            maskInvert = GUILayout.Toggle(maskInvert, new GUIContent("M", "Use Mask"), EditorStyles.miniButton, GUILayout.Width(21), GUILayout.Height(16)); GUILayout.Label("Invert");
                             invertRedS = EditorGUILayout.ToggleLeft("R", invertRedS, GUILayout.Width(30));
                             invertGreenS = EditorGUILayout.ToggleLeft("G", invertGreenS, GUILayout.Width(30));
                             invertBlueS = EditorGUILayout.ToggleLeft("B", invertBlueS, GUILayout.Width(30));
@@ -542,8 +571,54 @@ namespace DreadScripts
 
             string destinationPath = GetDestinationFolder(mainTexture);
             string texPath = AssetDatabase.GetAssetPath(mainTexture);
+
             Texture2D newTexture = GetColors(mainTexture, texWidth, texHeight, out Color[] myColors);
-            List<System.Tuple<string, string>> copyFromTo = new List<System.Tuple<string, string>>();
+
+            if (rotating)
+            {
+                List<Color> rotatedColors = new List<Color>();
+                switch (rotationType)
+                {
+                    case TexRotation.Clockwise90:
+                        for (int i = texWidth-1; i >=0; i--)
+                        {
+                            rotatedColors.AddRange(newTexture.GetPixels(i, 0, 1, texHeight));
+                        }
+                        myColors = rotatedColors.ToArray();
+                        newTexture = new Texture2D(texHeight, texWidth);
+                        break;
+
+                    case TexRotation.CClockwise90:
+                        for (int i = 0; i < texWidth; i++)
+                        {
+                            rotatedColors.AddRange(ReverseArray(newTexture.GetPixels(i, 0, 1, texHeight)));
+                        }
+                        myColors = rotatedColors.ToArray();
+                        newTexture = new Texture2D(texHeight, texWidth);
+                        break;
+
+                    case TexRotation.Rotate180:
+                        myColors = ReverseArray(myColors);
+                        break;
+
+                    case TexRotation.FlipHorizontal:
+                        for (int i = 0; i < texHeight; i++)
+                        {
+                            rotatedColors.AddRange(ReverseArray(newTexture.GetPixels(0, i, texWidth, 1)));
+                        }
+                        myColors = rotatedColors.ToArray();
+                        break;
+
+                    case TexRotation.FlipVertical:
+                        for (int i = texHeight - 1; i >= 0; i--)
+                        {
+                            rotatedColors.AddRange(newTexture.GetPixels(0, i, texWidth, 1));
+                        }
+                        myColors = rotatedColors.ToArray();
+                        break;
+                }
+                
+            }
 
             bool colorInverting = (invertRedS || invertGreenS || invertBlueS || invertAlphaS) && inverting;
             bool HSVEditing = hueShifting || saturating;
@@ -944,9 +1019,9 @@ namespace DreadScripts
             resetIcon = new GUIContent(EditorGUIUtility.IconContent("d_Refresh")) { tooltip = "Reset Dimensions" };
             creatingPath = PlayerPrefs.GetString("TextureUtilityCreatingPath", "Assets/DreadScripts/Texture Utility/Generated Assets");
 
-            for (int i=0;i<channelTextures.Length;i++)
+            foreach (var channel in channelTextures)
             {
-                channelTextures[i].SetMode(EditorPrefs.GetInt("TextureUtilityChannel" + channelTextures[i].name, (int)channelTextures[i].mode));
+                channel.SetMode(EditorPrefs.GetInt("TextureUtilityChannel" + channel.name, (int)channel.mode));
             }
         }
 
@@ -958,6 +1033,18 @@ namespace DreadScripts
                 myArray[i] = variable;
             }
             return myArray;
+        }
+
+        private static T[] ReverseArray<T>(T[] array)
+        {
+            T[] reversed = new T[array.Length];
+            int index = array.Length - 1;
+            for (int i = 0; i < reversed.Length; i++)
+            {
+                reversed[i] = array[index];
+                index--;
+            }
+            return reversed;
         }
 
         #region Extracted From DS_CommonMethods
@@ -1028,8 +1115,8 @@ namespace DreadScripts
         public string name;
         public Texture2D texture;
         public bool invert;
+        public Color defaultColor;
         public ColorMode mode = ColorMode.Red;
-        public float defaultValue;
         public enum ColorMode
         {
             Red,
@@ -1041,6 +1128,8 @@ namespace DreadScripts
         {
             name = n;
             SetMode(mode, true);
+            if (n == "Alpha")
+                defaultColor = Color.white;
         }
 
         public void SetMode(int i, bool ignoreSave = false)
@@ -1070,29 +1159,28 @@ namespace DreadScripts
         {
             Texture2D textureToUse;
             if (texture)
-            {
-                textureToUse = texture; 
-            }
+                textureToUse = texture;
             else
             {
                 textureToUse = new Texture2D(1, 1, TextureFormat.RGBA32, false, true);
-                textureToUse.SetPixel(0,0, new Color(defaultValue, defaultValue, defaultValue, 1));
+                textureToUse.SetPixel(0, 0, defaultColor);
                 textureToUse.Apply();
             }
 
             Texture2D newTexture = TextureUtility.GetColors(textureToUse, width, height, out Color[] myColors, unloadTempTexture);
             colors = myColors.Select(c =>
             {
-                if (!texture)
-                    return c.r;
-                if (mode == ColorMode.Red)
-                    return c.r;
-                if (mode == ColorMode.Green)
-                    return c.g;
-                if (mode == ColorMode.Blue)
-                    return c.b;
-
-                return c.a;
+                switch (mode)
+                {
+                    case ColorMode.Red:
+                        return c.r;
+                    case ColorMode.Green:
+                        return c.g;
+                    case ColorMode.Blue:
+                        return c.b;
+                    default:
+                        return c.a;
+                }
             }).ToArray();
             if (invert)
             {
@@ -1103,12 +1191,10 @@ namespace DreadScripts
             }
 
             if (!texture && unloadTempTexture)
-            {
                 Object.DestroyImmediate(textureToUse);
-            }
-            
+
             return newTexture;
-            
+
         }
 
         public void DrawGUI()
@@ -1154,15 +1240,20 @@ namespace DreadScripts
                 using (new GUILayout.HorizontalScope())
                 {
                     GUILayout.FlexibleSpace();
-                    texture = (Texture2D)EditorGUILayout.ObjectField("", texture, typeof(Texture2D), false, GUILayout.Width(66));
+                    Rect myTextureRect = GUILayoutUtility.GetRect(66, 66);
+                    Rect myColorRect = new Rect(myTextureRect) { x = myTextureRect.x + 1, y = myTextureRect.y + 45, width = 20, height = 20 };
+
+                    if (!texture)
+                        defaultColor = EditorGUI.ColorField(myColorRect, GUIContent.none, defaultColor, false, false, false);
+                    texture = (Texture2D)EditorGUI.ObjectField(myTextureRect, texture, typeof(Texture2D), false);
+                    if (!texture)
+                        defaultColor = EditorGUI.ColorField(myColorRect, GUIContent.none, defaultColor, false, false, false);
+                    
+
                     GUILayout.FlexibleSpace();
                 }
-                GUILayout.Label("Default (0-1)");
-                defaultValue = GUILayout.HorizontalSlider(defaultValue, 0, 1, GUILayout.Height(20));
                 invert = GUILayout.Toggle(invert, "Invert", "toolbarbutton");
             }
         }
-
-       
     }
 }
