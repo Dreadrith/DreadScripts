@@ -2,8 +2,9 @@ Made by Dreadrith#3238
 Server: https://discord.gg/ZsPfrGn
 Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/Dreadrith
+Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.0.0
+Version: v2.0.1
 Download: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/TextureUtility.unitypackage
 
 Texture Auto-Packer is made to negate the need to have to go through texture packing by automatically detecting channels modifications and update the resulting texture

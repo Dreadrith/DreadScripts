@@ -2,8 +2,9 @@ Made by Dreadrith#3238
 Server: https://discord.gg/ZsPfrGn
 Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/Dreadrith
+Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.0.0
+Version: v2.0.1
 Download: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/TextureUtility.unitypackage
 
 Texture Utility is made to make mundane and simple edits easier and quicker by doing it straight through Unity
@@ -29,6 +30,7 @@ Mask:	- Defines the parts and factor of how and where the edits will be applied.
 
 "M" Toggle:	- Chooses whether the module should be affected by the Mask.
 
+Rotate:		- Rotates the texture or flips it.
 Invert:		- Inverts the Colors of the selected channels on the texture. R > Red, G > Green, B > Blue, A > Alpha. an R G B invert is the typical color invert.
 Saturate:	- (Very Wonky) Increases / Decreases the saturation of the texture. -1 will guarantee all colors are grayscale. +1 is Hell.
 Hue Shift:	- Shifts the Hue of the texture. +1 is a full round hue shift back to the same color.
@@ -59,6 +61,7 @@ Unpack:	- Choose the main texture then Press "Unpack".
 		- This will create 3-4 textures (RGB(A)) in the same folder as the main texture with their appropriate channel colors.
 
 Pack:	- Insert your channel colors that you wish to merge under their appropriate channels
+		- The Colored box is the default solid color to use if not using a texture.
+		- Choose the color that you wish to extract from the Channel's texture or color
 		- Invert Toggle will invert the colors of the channel before packing it.
-		- Note that only the appropriate color of the channel will be used. i.e: Blue Channel will use the Blue colors of the specified texture. Alpha channel will use the red colors of its given texture.
 		- Press "Pack" to pack the textures into 1 texture.
