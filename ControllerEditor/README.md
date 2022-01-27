@@ -1,13 +1,14 @@
 ![Controller Editor](https://cdn.discordapp.com/attachments/750900715693539438/874198637289308180/AllTransitioning.gif)
 
-Utility Release  
+Utility Release. This ReadMe is somewhat outdated and requires updating. Various functions have been added since.
 
 # Controller Editor
-Ease of use, organized layout, and best functionality: <b>Controller Editor</b> is made with those in mind. Hasten and simplify your work with Controllers as much as possible, reducing tedious time wasting clicks and typing to barely a few clicks.
+Controller Editor will make your work with anything controller related just a breeze! Save yourself the tediousness and the time wasted on repetitively doing the same thing with the convenience of this tool!
 
 ![TransitionsEdit](https://cdn.discordapp.com/attachments/750900715693539438/874447556950782072/ThumbTransitioning.gif)
 
-Controller Editor has <b><i>a lot</i></b> of features which can be used to achieve that, best of which are:
+Controller Editor adds easy to use functions to the animator window and has many features to make it all easy.  
+<b><i>Some of the best features:</i></b>
 
 <h2>Transitions</h2>
 <ul><li>Multi-Edit Transitions Settings and Conditions.</li>
