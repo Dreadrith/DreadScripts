@@ -4,10 +4,6 @@ Showcase:
 
 Feature Release
 
-Latest Version: v2.4.0
-
-Last Updated: 06/26/2021
-
 # Password Creator
 
 Password Creator is made to limit access to the Avatar or its Features however you see fit. You can:
