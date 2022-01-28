@@ -5,13 +5,24 @@
 
 <h1 align="center">Paid</h1>
 
-## [Password Creator](https://github.com/Dreadrith/DreadScripts/tree/main/PasswordCreator)
+## [Password Creator (VRChat)](https://github.com/Dreadrith/DreadScripts/tree/main/PasswordCreator)
 <details>
-<summary><b>Password Creator</b> is made to limit access to the Avatar or its Features however you see fit (VRChat)</summary>
+<summary><b>Password Creator</b> is made to limit access to the Avatar or its Features however you see fit</summary>
 
     - Lock the Avatar, not allowing it to move nor track.
     - Lock the Layers, stop certain things from working or changing.
     - Lock the SubMenus, disallow access to certain menus and features
+</details>
+
+## [DBone Editor Overhaul](https://dreadrith.gumroad.com/l/DBEditor)
+<details>
+  <summary><b>DynamicBone Editor Overhaul</b> will make it much simpler and quicker for you to setup your Character's Dynamic Bones!</summary>
+    
+    - New Dynamic Bones automatically set their selves as the Root.
+    - Select or Copy Colliders/Exclusions through the scene, no more drag & drop!
+    - Very intuitive Collider handles for easy placement!
+    - Easily set DBones Radius and End Offset through the scene.
+    - Cleaned and more organized layout.
 </details>
 
 ## [Controller Editor](https://github.com/Dreadrith/DreadScripts/tree/main/ControllerEditor)
@@ -27,6 +38,8 @@
 
 ## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
 (VRChat) Control your limbs through Puppet Control whether you're on PC or Half Body!
+## [Text2Texture](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Text2Texture.unitypackage)  
+Easily generate a Normal Map, a Mask, a Custom Text Texture or a Material from given text input!
 ## [Texture Utility](https://github.com/Dreadrith/DreadScripts/tree/main/Texture%20Utility)  
 Various Tools and Scripts to speed up your workflow when it comes to Textures
 ## [Quick Toggle](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/QuickToggle.unitypackage)  
