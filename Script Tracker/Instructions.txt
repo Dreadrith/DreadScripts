@@ -1,0 +1,29 @@
+Made by Dreadrith#3238
+Server: https://discord.gg/ZsPfrGn
+
+Version: v1.2.0
+Link: https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/ScriptTracker.unitypackage
+
+Script Tracker was made to offer protection against potentially malicious scripts and warn about possible hidden activities.
+Malicious coders may attempt to steal your info, such as credentials or auth tokens. They may also attempt to cause damage to your device through the scripts.
+
+The Script Tracker scans code based on Keywords written in the Script Tracker Settings. (Create > DreadScripts > Script Tracker Settings).
+You can change the settings in the Editor Window (DreadTools > Scripts Settings > Script Tracker).
+WARNING: DLLS CANNOT BE SCANNED OR REVISED! Always be warry of DLLs and only get them from trustworthy sources!
+
+On first import of the Script Tracker, it's recommended to allow your current project's scripts if you trust them by clicking "Allow Current Project Scripts and DLLs"
+to avoid getting prompted about scripts already present in the project.
+
+When a script gets prompted you can:
+	- Allow: Imports the script normally, and adds it to the whitelist.
+	- Revise: Imports the script as a .txt file, and adds "Flags" to the lines that have triggered flags. After revision, you may either turn it back to .cs or delete it. To turn it back to a script .cs file, Right Click > Show in explorer. Right Click Script > Rename > Replace extension with .cs.
+	- Delete: Deletes the script and its meta data, disallowing it from compiling or running anything.
+
+
+Script Tracker Settings: Created through Assets > Create > DreadScripts > Script Tracker Settings
+Contains Keywords that should be scanned for, Case-Insensitive.
+	- Low Risk Flag: Flagged if any Low Risk keyword is found, ignores flag if allowed previously.
+	- Normal Risk Flag: Flagged if any Normal Risk keyword is found, ignores flags if allowed previously and after verifying integrity*.
+	- High Risk Flag: Flagged if any High Risk keyword is found, prompts any time it gets flagged.
+
+*Verifying Integrity: Script Tracker will save a Hash of the allowed script and will compare the script to it when reimporting. So it will prompt if anything in the script was changed.
