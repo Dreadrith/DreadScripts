@@ -1,7 +1,8 @@
 # Script Tracker
 
 <a href="https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/ScriptTracker.unitypackage">Download Here</a>  
-Found in DreadTools > Scripts Settings > Script Tracker
+Instructions in Assets > DreadScripts > Script Tracker > Instructions.txt  
+Settings in DreadTools > Scripts Settings > Script Tracker
 
 ![Flag](https://cdn.discordapp.com/attachments/898498998527197224/898544716478574722/unknown.png)
 
