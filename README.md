@@ -38,6 +38,8 @@
 
 ## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
 (VRChat) Control your limbs through Puppet Control whether you're on PC or Half Body!
+## [Script Tracker](https://github.com/Dreadrith/DreadScripts/tree/main/Script%20Tracker)  
+Scan imported packages and assets for potentially malicious scripts
 ## [Text2Texture](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Text2Texture.unitypackage)  
 Easily generate a Normal Map, a Mask, a Custom Text Texture or a Material from given text input!
 ## [Texture Utility](https://github.com/Dreadrith/DreadScripts/tree/main/Texture%20Utility)  
