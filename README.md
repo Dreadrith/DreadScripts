@@ -5,10 +5,21 @@
 
 <h1 align="center">Paid</h1>
 
+## [Carbon Copy (VRChat)](https://github.com/Dreadrith/Carbon-Copy)
+<details>
+<summary><b>Carbon Copy</b> is a feature-rich constraint-based clone system built for VRChat users.</summary>
+  
+    - Easy to Use one click setup script!
+    - Supports Mimic and 3 different types of Mirror
+    - Scale, Bind, Freeze, Lag, Swap, Hide and More!
+    - On-Screen HUD to visualize active features and settings.
+    - Highly optimized for Memory with most features fitting into just 9 Memory!
+</details>
+
 ## [Password Creator (VRChat)](https://github.com/Dreadrith/DreadScripts/tree/main/PasswordCreator)
 <details>
 <summary><b>Password Creator</b> is made to limit access to the Avatar or its Features however you see fit</summary>
-
+  
     - Lock the Avatar, not allowing it to move nor track.
     - Lock the Layers, stop certain things from working or changing.
     - Lock the SubMenus, disallow access to certain menus and features
