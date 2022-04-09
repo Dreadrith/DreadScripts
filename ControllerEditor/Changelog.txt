@@ -1,6 +1,6 @@
 (v2.6.5)
 --------
-- [Feature] TEMPLATES! Read more below
+- [Feature] TEMPLATES! Read in Instructions
 - [Feature] Added a "+" button to the top left of states, allows you to instantly create a clip for it
 - [Feature] Added option for default layer mask in settings
 - [Feature] Added "Local Only" option to Shared VRCParameter Drivers
