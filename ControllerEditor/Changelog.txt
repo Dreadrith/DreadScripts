@@ -1,0 +1,30 @@
+(v2.6.5)
+--------
+- [Feature] TEMPLATES! Read more below
+- [Feature] Added a "+" button to the top left of states, allows you to instantly create a clip for it
+- [Feature] Added option for default layer mask in settings
+- [Feature] Added "Local Only" option to Shared VRCParameter Drivers
+- [Improvement] Licensing updated to be compatible with Windows 11 and can cache verify!
+- [Improvement] Copied Layers will now have a weight of 1 if they used to be a base layer
+- [Fix] Fixed newly created transitions from AnyState using certain features not appearing without switching views
+- [Fix] Fixed redirecting transitions from AnyState in Sub-StateMachines
+- [Fix] Fixed parameter suffixing when copying controllers
+
+(v2.6.2)
+--------
+[Feature] Added Write Defaults tab to Controller Section. Allows you to Set or Check Write Defaults of your states.
+[Improvement] You can now switch between Shared and All conditions even if the GUI is greyed out / disabled.
+[Fix] Fixed the color of selected transitions / sub-assets in window.
+[Fix] Fixed Shared Conditions not filtering properly from v2.6.0
+[UI] Added option for using legacy dropdown on conditions in cosmetic tab
+
+[Fix] Fixed Error thrown when undo-ing packing a statemachine. 
+Note that undo-ing this action results in one obsolete statemachine remaining in the sub-assets. 
+This is a Unity bug. You can use Sub-Asset cleanup to get rid of it.
+
+(v2.6.0)
+--------
+[Improvement] Added toggles for Cosmetic modules.
+[Improvement] Condition Parameter now utilizes the advanced dropdown similar to Unity's Transition inspector
+[Fix] Fixed "Make Multiple Transitions" not working/display when its from AnyState in a Sub-StateMachine
+[Misc] Moved "Transitions Count" part to the top of the Transitions module.
