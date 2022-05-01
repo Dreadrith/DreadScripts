@@ -1,6 +1,15 @@
+(v2.6.8)
+--------
+- [Fix] Fixed Graph Colors and Style breaking when switching playmodes
+- [Fix] Fixed duplicated layers referencing the same blendtree as originals. Only applicable if Blendtree is a sub-asset.
+- [Fix] Fixed duplicated layers not setting the correct layer or statemachine default state in sub-state machines
+- [Fix] Fixed parameter replacement not replacing Blendtree parameters. Templates included.
+- [Fix] Fixed redirected transitions from Exit still have "IsExit" enabled.
+- [Misc] Duplicated Layers will now have a unique name when duplicated
+
 (v2.6.5)
 --------
-- [Feature] TEMPLATES! Read in Instructions
+- [Feature] TEMPLATES! Instantly merge controllers! Read in Instructions!
 - [Feature] Added a "+" button to the top left of states, allows you to instantly create a clip for it
 - [Feature] Added option for default layer mask in settings
 - [Feature] Added "Local Only" option to Shared VRCParameter Drivers
@@ -21,10 +30,3 @@
 [Fix] Fixed Error thrown when undo-ing packing a statemachine. 
 Note that undo-ing this action results in one obsolete statemachine remaining in the sub-assets. 
 This is a Unity bug. You can use Sub-Asset cleanup to get rid of it.
-
-(v2.6.0)
---------
-[Improvement] Added toggles for Cosmetic modules.
-[Improvement] Condition Parameter now utilizes the advanced dropdown similar to Unity's Transition inspector
-[Fix] Fixed "Make Multiple Transitions" not working/display when its from AnyState in a Sub-StateMachine
-[Misc] Moved "Transitions Count" part to the top of the Transitions module.
