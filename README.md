@@ -49,6 +49,8 @@
 
 ## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
 (VRChat) Control your limbs through Puppet Control whether you're on PC or Half Body!
+## [Asset Organizer](https://github.com/Dreadrith/AssetOrganizer)  
+Reorganizes Prefab, Scene or Folder's dependency assets into their own sorted folders 
 ## [Script Tracker](https://github.com/Dreadrith/DreadScripts/tree/main/Script%20Tracker)  
 Scan imported packages and assets for potentially malicious scripts
 ## [Text2Texture](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Text2Texture.unitypackage)  
