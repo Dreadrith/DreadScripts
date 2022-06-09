@@ -1,0 +1,27 @@
+(v2.6.4)
+--------
+- [Fix] Fixed Avatar re-locking itself in-game after unlocking
+- [Fix] Max memory cost is now calculated properly according to current SDK
+- [Improvement] If Remember Me is disabled. Password Parameters will be forced reset on avatar load.
+- [Improvement] Removed the Mistake Counter if Mistake Events is not enabled.
+- [Improvement] Updated licensing. Can cache verify and compatible with windows 11.
+- [Misc] Changed default lock animation
+- [Misc] Changed context menu order priorty
+
+(2.6.3)
+-------
+[Feature] Added "Simple Mode". Only displays the minimal settings to setup password on an avatar. 
+[Misc] Changed default settings and Low/Medium Protection presets:
+- Name Obfuscation defaults Enabled
+- Strict Identifiers defaults Enabled
+- Low & Medium has strict identifiers disabled.
+
+(2.6.2)
+-------
+[Feature] Commercialize Module and Password Recreator feature.*
+[Fix] Fixed Full Lock Animations sometimes getting stuck at frame 0.
+
+*: This Feature is a Commercial Exclusive feature. 
+This module will add "Password Recreator" monobehaviour to the Avatar and create Deobfuscation Data appropriately.
+This Monobehaviour can change the password credentials on the avatar when used with the Deobfuscation Data.
+This feature is to allow package sales where package users can change the password of the avatar easily.
