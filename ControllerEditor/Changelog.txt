@@ -1,3 +1,27 @@
+(v2.7.2)
+--------
+- [Feature] Added "Replacing" option for transitions. Any transition function will remove sampled transition when enabled. Holding shift before right click switches behaviour for that function instance.
+- [Feature] Added "Display Layer Index" option. Shows the index of the layer in the layers list of the controller
+- [Improvement] Added option to switch state double click's behaviour. Ctrl + double click does the other behaviour.
+- [Improvement] Reverse transitions now also reverses the modes of the conditions of the transitions. Disable option Available
+- [Improvement] Improved some template controllers and replaced mirror detection with VRLabs'
+- [Improvement] Transitions will now properly show the source and destination name
+- [Improvement] Quick Clip creation through state's "+" will now remember last used path and name across sessions
+- [Improvement] You can now isolate and edit the settings of the sub-selected transition
+- [Improvement] You can now Copy & Paste conditions of the sub-selected transition
+- [Fix] Fixed certain things not working correctly without opening CEditor window
+- [Fix] Fixed 'Redirect Transitions' not working from context menu
+- [Fix] Fixed copied Entry transitions not retaining conditions
+- [Fix] Fixed condition values not quick switching beyond 9 fields and made it loop around
+- [Fix] Fixed Cosmetic Node and Transition colors being overridden even if disabled
+- [Fix] Fixed pressing merge on a singular transition would cause it to act weird visually
+- [Misc] Removed "Rename" option for transitions
+- [Misc] Settings saving behaviour has changed*. This update resets your configuration, please set them again.
+
+Saving Behaviour: Previously, Controller Editor used individual EditorPrefs for each value it needed to save, as well as a State and Transition to use as the default.
+New behaviour now gets rid of all of that, only using one EditorPref and not requiring any asset.
+This method is somewhat experimental and may uncommonly run into issues. If it does, you may have to clear settings through the window dropdown.
+
 (v2.6.8)
 --------
 - [Fix] Fixed Graph Colors and Style breaking when switching playmodes
