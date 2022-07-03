@@ -4,15 +4,16 @@ Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/dreadrith
 Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.6.5
+Version: v2.7.6
 Controller Editor is made to simplify working with Controllers as much as possible.
 
 Controller Editor Patches
 -------------------------
 These are patches implemented through 0Harmony, Adds/Changes the way Unity works internally to improve experience and allow flexible control
 
-Layers View Patches:	- Added a dropdown to the toolbar to choose from Template Controllers** to instantly merge into the controller. Read more below
+Layers View Patches:	~ Added a dropdown to the toolbar to choose from Template Controllers** to instantly merge into the controller. Read more below
 						~ Added "Duplicate", "Copy", "Paste", and "Build Mask*" to Layer Context Menu (Right-Click).
+						~ Layer Index is displayed in the layers list. Option to disable in settings.
 						~ Scrollbar will no longer reset after layer edits
 						~ Scrollbar will scroll down to newly created layer upon new layer creation
 						~ Clicking the Controller Path at the bottom of the graph will highlight the Controller in the assets.
@@ -23,7 +24,8 @@ Build Mask*:			~ Generic: Instantly creates a Mask that includes all the transfo
 						~ Build Mask will attempt to also include setting the Humanoid Body Parts active properly
 
 Node Patches:			~ Double Clicking a Node will enter Multi-Transitioning mode. Single Click to connect and continue. Double Click to connect and transfer to destination. Click elsewhere to stop.
-[Entry, Any, State]		~ Added "Make Multiple Transitions" to Context Menu
+[Entry, Any, State]		~ Ctrl Double Click states for original double click behaviour. Default behaviour can be switched in settings.
+						~ Added "Make Multiple Transitions" to Context Menu
 						~ Added the ability to change node colors thruogh the settings Cosmetic tab
 
 							- Make Multiple Transitions: Makes transitions from the previously selected Nodes (Step 1) directed to the selected Nodes afterwards (Step 2).
@@ -47,8 +49,9 @@ StateMachine Patches:	~ Added "Select All Transitions" and "Select All States" t
 Transition Patches:		~ Implemented a Transitions context menu which appears when Right-Clicking transitions when a transition is selected
 						~ Added the ability to change the transitions colors through the settings Cosmetic tab
 						~ Added "Reverse", "Replicate", "Redirect", "From/To Any" Transitions to the Transitions Context Menu.
+							- Has "Replacing" toggle. If enabled, will remove sampled transitions. Hold shift before right clicking to temporarily toggle for next function.
 
-							- Reverse: Makes a copy of the transition and switches its Source and Destination.
+							- Reverse: Makes a copy of the transition and switches its Source and Destination and reverses condition modes. Option in settings.
 
 							- Replicate Transitions: Makes a copy of the selected transitions (Step 1) going out of the selected states (Step 2).
 								Step 1: Select Transitions to Replicate. Turn on "Replicate Transitions".
@@ -70,6 +73,7 @@ Asset Creation Patches:	~ Set default settings for newly created Transitions and
 Template Controllers**: 
 These are previously created controllers that you can instantly add to your current controller without having to go through the trouble of merging or using any other features.
 When used, it will add all the layers and parameters to the active controller. It will automatically handle parameter renaming so that it's unique. Hold Shift when adding template if the parameters shouldn't be renamed.
+It will automatically make copies and use clips that use animator float parmaters that were renamed or clips whose names start with "T_".
 
 To create your own template, create your controller, then add an asset label to it with the format "Template:(Context menu path)". 
 Use "/" to separate menus. Use "%" for spaces.
@@ -103,8 +107,6 @@ Main Parts Include: Transitions - States - Controller.
 
 	~ Transitions Count: Displays the selected Transitions. May be used to deselect certain Transitions.
 		Clicking a transition puts the Conditions onto SubTransition mode, which allows the editing of the conditions of that transition alone. Similar to only selecting that transition in the controller.
-			
-			- Rename Empty/All Transitions: Renames Selected Transitions to Source -> Destination to properly display them in Transitions Count
 
 
 ~ States: 
@@ -123,7 +125,7 @@ Main Parts Include: Transitions - States - Controller.
 
 	(VRC)
 	~ VRC Parameter Drivers: Allows the Multi-Editing of Parameter drivers of the selected states. Works similarly to "Shared Conditions", only shows Parameter Drivers that have the same settings.
-
+	~ VRC Tracking Control: Allows the Multi-Editing of tracking control of the selected states. Clicking on a label is a quick way to switch type.
 
 ~ Controller: Has a variety of functions to manage the controller:
 	~ Action:

@@ -1,3 +1,24 @@
+(v2.7.6)
+--------
+- [Feature] Added Template controllers will make and use copies of clips used if their name starts with "T_".
+- [Feature] It will also copy and use clips if they used animator float parameters that were renamed
+- [Feature] Added 2 new template controllers: Smooth Float Half-Range & Smooth Float Full Range (Thanks to Razgriz)
+- [Feature] Clicking on tracking labels changes their tracking type
+- [Improvement] Made patch initialization faster
+- [Improvement] Made target/active machine detection more reliable
+- [Fix] (Hopefully) Fixed error/issue that causes animator window to go kaput (blank)
+- [Fix] Fixed errors thrown when doing certain things with states without any in-transitions
+- [Fix] Fixed certain states settings being affected by multi-selection in CEditor. (This is a native unity bug!)
+- [Fix] Fixed nested Blendtrees referencing old blendtrees when copying/duplicating
+- [Fix] Fixed nested Blendtrees don't have their parameters renamed if necessary
+- [Fix] Fixed Right (Hand) template controller using wrong parameter in normalized time
+- [Fix] Fixed cosmetic colors being permanently black
+- [Fix] Fixed cases of copying/duplicating layer without renaming statemachine
+- [UI] Changed layout and color coded tracking settings (feedback needed)
+- [UI] Improved banner layout in settings
+- [Misc] Banner no longer saves to file. It'll download from the internet and load from cache.
+- [Misc] Suppressed "Authorized" message if cache authorized
+
 (v2.7.2)
 --------
 - [Feature] Added "Replacing" option for transitions. Any transition function will remove sampled transition when enabled. Holding shift before right click switches behaviour for that function instance.
@@ -42,15 +63,3 @@ This method is somewhat experimental and may uncommonly run into issues. If it d
 - [Fix] Fixed newly created transitions from AnyState using certain features not appearing without switching views
 - [Fix] Fixed redirecting transitions from AnyState in Sub-StateMachines
 - [Fix] Fixed parameter suffixing when copying controllers
-
-(v2.6.2)
---------
-[Feature] Added Write Defaults tab to Controller Section. Allows you to Set or Check Write Defaults of your states.
-[Improvement] You can now switch between Shared and All conditions even if the GUI is greyed out / disabled.
-[Fix] Fixed the color of selected transitions / sub-assets in window.
-[Fix] Fixed Shared Conditions not filtering properly from v2.6.0
-[UI] Added option for using legacy dropdown on conditions in cosmetic tab
-
-[Fix] Fixed Error thrown when undo-ing packing a statemachine. 
-Note that undo-ing this action results in one obsolete statemachine remaining in the sub-assets. 
-This is a Unity bug. You can use Sub-Asset cleanup to get rid of it.
