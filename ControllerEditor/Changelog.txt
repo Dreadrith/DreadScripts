@@ -1,3 +1,8 @@
+(v2.7.7)
+--------
+- [Fix] Fixed error when copying/duplicating a layer with statemachine behaviours
+- [Fix] Fixed Assertion errors popping up when copying/duplicating a layer
+
 (v2.7.6)
 --------
 - [Feature] Added Template controllers will make and use copies of clips used if their name starts with "T_".
