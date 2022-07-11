@@ -1,3 +1,7 @@
+(v2.6.6)
+--------
+- [Fix] Changed something that otherwise may be a security flaw
+
 (v2.6.5)
 --------
 - [Fix] Fixed error thrown if memory would be above 128 rather than 256
