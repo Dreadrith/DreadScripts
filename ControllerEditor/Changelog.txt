@@ -1,3 +1,27 @@
+(v2.8.0)
+--------
+- [Feature] Added ability to rename states using F2.
+- [Feature] Ctrl + Double click on graph to add new empty state
+- [Feature*] Added shortcut functionality to Layers. Press Ctrl+C to Copy. Ctrl+V to Paste. Ctrl+D to Duplicate. F2 to rename.
+- [Feature*] Added Cosmetic option to show if a state has WriteDefaults and Behaviours. Can be toggled.
+- [Feature] Added Cosmetic option to show state coordinates. Can be edited and toggled
+- [Feature!] Added button to hide/show assets in sub-asset explorer.
+- [Feature] Ctrl+A will now Select all States. Ctrl+Shift+A will Select all Transitions.
+- [Feature] Added 'Unique RNG' Template Controller by Cam
+- [Improvement] StateMachines can now do Chain-Transitioning
+- [Patch] Add Empty State will automatically snap to grid
+- [Fix] Fixed drag and drop of clips creating two states
+- [Fix] Fixed Exit Node not having a context menu
+- [Fix] Reverse Transitions will properly update transitions
+- [Misc] Added a tip on the Animator Window to click on the name of the controller to ping it. Appears once.
+
+Feature*: Thanks and Credit to Dj Lukis for inspiration and reference code
+Feature!: Due to a unity complications, you'll need to refresh the project window for immediate update. Can exit and re-open folder or ping the controller.
+
+(v2.7.8)
+--------
+- [Fix] Fixed terrible bug when copying/duplicating.
+
 (v2.7.7)
 --------
 - [Fix] Fixed error when copying/duplicating a layer with statemachine behaviours
@@ -47,24 +71,3 @@
 Saving Behaviour: Previously, Controller Editor used individual EditorPrefs for each value it needed to save, as well as a State and Transition to use as the default.
 New behaviour now gets rid of all of that, only using one EditorPref and not requiring any asset.
 This method is somewhat experimental and may uncommonly run into issues. If it does, you may have to clear settings through the window dropdown.
-
-(v2.6.8)
---------
-- [Fix] Fixed Graph Colors and Style breaking when switching playmodes
-- [Fix] Fixed duplicated layers referencing the same blendtree as originals. Only applicable if Blendtree is a sub-asset.
-- [Fix] Fixed duplicated layers not setting the correct layer or statemachine default state in sub-state machines
-- [Fix] Fixed parameter replacement not replacing Blendtree parameters. Templates included.
-- [Fix] Fixed redirected transitions from Exit still have "IsExit" enabled.
-- [Misc] Duplicated Layers will now have a unique name when duplicated
-
-(v2.6.5)
---------
-- [Feature] TEMPLATES! Instantly merge controllers! Read in Instructions!
-- [Feature] Added a "+" button to the top left of states, allows you to instantly create a clip for it
-- [Feature] Added option for default layer mask in settings
-- [Feature] Added "Local Only" option to Shared VRCParameter Drivers
-- [Improvement] Licensing updated to be compatible with Windows 11 and can cache verify!
-- [Improvement] Copied Layers will now have a weight of 1 if they used to be a base layer
-- [Fix] Fixed newly created transitions from AnyState using certain features not appearing without switching views
-- [Fix] Fixed redirecting transitions from AnyState in Sub-StateMachines
-- [Fix] Fixed parameter suffixing when copying controllers

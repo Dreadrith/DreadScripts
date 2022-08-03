@@ -4,7 +4,7 @@ Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/dreadrith
 Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.7.6
+Version: v2.8.0
 Controller Editor is made to simplify working with Controllers as much as possible.
 
 Controller Editor Patches
@@ -13,6 +13,7 @@ These are patches implemented through 0Harmony, Adds/Changes the way Unity works
 
 Layers View Patches:	~ Added a dropdown to the toolbar to choose from Template Controllers** to instantly merge into the controller. Read more below
 						~ Added "Duplicate", "Copy", "Paste", and "Build Mask*" to Layer Context Menu (Right-Click).
+						~ Shortcuts to do common functions: Ctrl+C (Copy), Ctrl+V (Paste), Ctrl+D (Duplicate) and F2 (Rename)
 						~ Layer Index is displayed in the layers list. Option to disable in settings.
 						~ Scrollbar will no longer reset after layer edits
 						~ Scrollbar will scroll down to newly created layer upon new layer creation
@@ -24,23 +25,28 @@ Build Mask*:			~ Generic: Instantly creates a Mask that includes all the transfo
 						~ Build Mask will attempt to also include setting the Humanoid Body Parts active properly
 
 Node Patches:			~ Double Clicking a Node will enter Multi-Transitioning mode. Single Click to connect and continue. Double Click to connect and transfer to destination. Click elsewhere to stop.
-[Entry, Any, State]		~ Ctrl Double Click states for original double click behaviour. Default behaviour can be switched in settings.
+						~ Ctrl Double Click states for original double click behaviour. Default behaviour can be switched in settings.
 						~ Added "Make Multiple Transitions" to Context Menu
-						~ Added the ability to change node colors thruogh the settings Cosmetic tab
+						~ Added "Select Out/In/Shared Transitions" to context menu where appropriate.
+						~ Added the ability to change node colors through the settings Cosmetic tab
 
 							- Make Multiple Transitions: Makes transitions from the previously selected Nodes (Step 1) directed to the selected Nodes afterwards (Step 2).
 									Step 1: Select Nodes to make a transition FROM. Turn on "Make Multiple Transitions".
 									Step 2: Select Nodes to make a transition TO. Turn off "Make Multiple Transition".
 
 
-Animator State Patches:	~ Added Ability to Drag and Drop Animation Clips or BlendTrees onto States.
+Animator State Patches:	~ Added ability to rename states using 'F2'
+						~ Added ability to quickly create a new empty state using Ctrl + Double left click on graph.
+						~ Added ability to Drag and Drop Animation Clips or BlendTrees onto States.
 						~ Added "+" to the top left of states. This allows you to instantly create a new clip for this state.
-						~ Added "Edit Blendtree" to Animator State context menu.
-						~ Added "Select Shared Transitions", "Select Out Transitions" and "Select In Transitions" to AnimatorState context menu.
 						~ Added "Pack Into StateMachine" to AnimatorState context menu. Puts Selected States and StateMachines in a new StateMachine
+						~ Added Indicators for Write Defaults and Behaviours in the upper right corner. Toggle in settings.
+						~ Added Coordinates fields of the state in the lower left corner. Toggle in settings.
+						~ Added "Edit Blendtree" to Animator State context menu.
 						~ Motion type and name is displayed under the State's name. Can be disabled in settings.
 
-StateMachine Patches:	~ Added "Select All Transitions" and "Select All States" to StateMachine context menu
+StateMachine Patches:	~ Added ability to 'Select All States' using Ctrl + A and 'Select All Transitions' using Ctrl + Shift + A.
+						~ Added "Select All Transitions" and "Select All States" to StateMachine context menu
 						~ Added "Make Multiple Transitions" to StateMachine Context menu.
 						~ Added "Unpack StateMachine" to StateMachine context
 						~ Added the ability to change the graph colors through the settings Cosmetic tab
@@ -164,4 +170,4 @@ Controller Editor Settings
 	- Default Layer Mask: The Avatar Mask of newly created Layers
 	- Default Assets Path: Where to place created assets. This includes the Default Transition, Default State and Masks Built.
 
-~ Cosmetic: Change the way the Graph looks on Controllers by changing their colors.
+~ Behaviour & Cosmetic: Change the way the Graph looks on Controllers by changing their colors.
