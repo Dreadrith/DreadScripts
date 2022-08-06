@@ -1,3 +1,17 @@
+(v2.8.1)
+--------
+- [Feature/Misc] Added "Fake Transition*". Read note below.
+- [Fix] Fixed pressing enter toggles 'Make Multiple Transitions'
+- [Fix] Removed debug from dev testing
+- [Misc] New empty states will now be named the same as the default state in settings.
+- [Misc] Re-enabled state name editing for selected states settings.
+- [Misc] Re-enabled state name editing for default state's settings.
+- [Misc] Changed main tabs toggle functionality. Ctrl/Shift click to enable multiple.
+
+Fake Transition: Do Ctrl+Shift+Click (x2) on any Node to do a fake transition.
+You can make a transition from ANY node to ANY other node including itself. These transitions are only for fun. They aren't functional and will not be saved.
+They may throw an error rarely but should be relatively safe.
+
 (v2.8.0)
 --------
 - [Feature] Added ability to rename states using F2.

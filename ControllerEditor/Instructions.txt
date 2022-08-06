@@ -4,7 +4,7 @@ Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/dreadrith
 Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.8.0
+Version: v2.8.1
 Controller Editor is made to simplify working with Controllers as much as possible.
 
 Controller Editor Patches
@@ -28,12 +28,14 @@ Node Patches:			~ Double Clicking a Node will enter Multi-Transitioning mode. Si
 						~ Ctrl Double Click states for original double click behaviour. Default behaviour can be switched in settings.
 						~ Added "Make Multiple Transitions" to Context Menu
 						~ Added "Select Out/In/Shared Transitions" to context menu where appropriate.
+						~ Added ability to make a "Fake Transition". Ctrl+Shift+Click (x2) on a node.
 						~ Added the ability to change node colors through the settings Cosmetic tab
 
 							- Make Multiple Transitions: Makes transitions from the previously selected Nodes (Step 1) directed to the selected Nodes afterwards (Step 2).
 									Step 1: Select Nodes to make a transition FROM. Turn on "Make Multiple Transitions".
 									Step 2: Select Nodes to make a transition TO. Turn off "Make Multiple Transition".
-
+							
+							- Fake Transition: You can make a transition from ANY node to ANY other node including itself. These transitions aren't functional and will not be saved.
 
 Animator State Patches:	~ Added ability to rename states using 'F2'
 						~ Added ability to quickly create a new empty state using Ctrl + Double left click on graph.
