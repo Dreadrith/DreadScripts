@@ -1,3 +1,16 @@
+(v2.8.3)
+--------
+- [Fix] Fixed inability to access SubStateMachines
+- [Misc] Replaced funky "X" button on lists with the usual reorderable list's '-' button
+- [Misc] Alternate Double Click is now on by default for first use
+
+(v2.8.2)
+--------
+- [Feature] Added Copy, Paste and Remove for behaviours on States and Statemachines
+- [Fix] If using Ctrl for chain connecting, you now can still connect to and start connecting from target state with double click
+- [Fix] Fixed redirect transition not redirecting to Exit if only Exit is selected.
+- [Fix] Fixed Any and Entry requiring Ctrl to start chain connecting
+
 (v2.8.1)
 --------
 - [Feature/Misc] Added "Fake Transition*". Read note below.

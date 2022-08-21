@@ -4,7 +4,7 @@ Github: https://github.com/Dreadrith/DreadScripts
 Gumroad: https://gumroad.com/dreadrith
 Ko-fi: https://ko-fi.com/dreadrith
 
-Version: v2.8.1
+Version: v2.8.3
 Controller Editor is made to simplify working with Controllers as much as possible.
 
 Controller Editor Patches
