@@ -4,7 +4,7 @@ By purchasing a product, you agree to the Terms and Conditions & [Privacy Policy
 
 ## Store Rules
 1. If purchasing for someone else, put the giftee's information and give them the license key (if any) for them to activate the product.
-2. Refunds are viable for [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#license-protected-product) if has not yet been activated. No refunds otherwise due to the nature of digital products.
+2. Refunds are viable for [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#license-protected-product) if it has not yet been activated. No refunds otherwise due to the nature of digital products.
 3. Do **NOT** [chargeback](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#tools).
 4. For any questions/issues, read [here](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#contact).
 
