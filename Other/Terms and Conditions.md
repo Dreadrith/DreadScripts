@@ -10,9 +10,10 @@ By purchasing a product, you agree to the Terms and Conditions & [Privacy Policy
 
 ## Product rules:
 1. Do **NOT** attempt to disassemble or de-obfuscate any script or source code, according to DMCA Code 1201 regarding circumvention of copyright protection systems.
-2. Do **NOT** redistribute any file without permission or appropriate license. Follow export instructions if provided.
-3. Do **NOT** claim or resell as your own.
-4. The following rules apply to **ALL** products except '[Tools](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#tools)':
+2. Do **NOT** use HWID Spoofers when using [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#license-protected-product). This wouldn't be a violation in of itself but it may cause you issues with license verification and transfer guidelines.
+3. Do **NOT** redistribute any file without permission or appropriate license. Follow export instructions if provided.
+4. Do **NOT** claim or resell as your own.
+5. The following rules apply to **ALL** products except '[Tools](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#tools)':
     - Do **NOT** use commercially without permission or an appropriate license, such as selling on an avatar or offering the product as a service or upsell in an upload or commission.
     - Do **NOT** sell on an avatar usually costing below $10.
     - Do **NOT** use on public releases or uploads without permission.
