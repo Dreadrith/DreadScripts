@@ -61,10 +61,10 @@ Various Tools and Scripts to speed up your workflow when it comes to Textures
 Quickly generate clips that Enable or Disable GameObjects in your hierarchy.
 ## [Dupe With Mats](https://github.com/Dreadrith/DreadScripts/tree/main/Duplicate%20With%20Materials)  
 Instantly make new variations of an Avatar by duplicating and replacing each material.
-## [Selection Helper](https://github.com/Dreadrith/DreadScripts/tree/main/Selection%20Helper)  
-Variety of functions to make selection easier, whether through the Scene or through the hierarchy
+## [Selection Helper](https://github.com/Dreadrith/SelectionHelper)  
+Unity Editor package to make selecting certain objects easier and less tedious.
 ## [Export PostProcessor](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/ExportPostProcessor.unitypackage)
-Removes the mundane and repetitive things you have to do when exporting packages
+Removes the mundane and repetitive things you have to do when exporting packages.
 ## [Reset Avatar](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Reset.Avatar.unitypackage)  
 Reset your Avatar's pose as long as it's humanoid case you break it somehow, usually by recording animation.
 ## [Dreadomizer](https://github.com/Dreadrith/DreadScripts/releases/download/Scripts/Dreadomizer.unitypackage)  
