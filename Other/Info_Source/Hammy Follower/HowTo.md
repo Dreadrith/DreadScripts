@@ -31,7 +31,10 @@ Hammy's Standalone Stats:
 | Bones  | 33  |
 | PhysBone Components  | 2  |
 | PhysBone Affected Transforms  | 39  |
-| Rating | Poor  |
+| PC Rating | Good  |
+| Quest Rating | Poor  |
+
+<br>
 
 The biggest rank tanker is the PhysBone Affected Transforms. This is due to having a second PhysBone component on Hammy that affects his entire skeleton.
 If you expand Hammy Follower enough, you'll find Container > Hammy PhysSettings. Deleting this will remove the 2nd PhysBone component and redude the affected transforms count a lot.
