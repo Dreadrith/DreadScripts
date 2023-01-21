@@ -8,7 +8,7 @@ Setup
 4. Tell Hammy that he's very cute.
 5. Done!
 
-Root: Usually the top most object of your Avatar's hierarchy. Always the GameObject with the 'Avatar Descriptor' component.
+Root: Usually the top most object of your Avatar's hierarchy. Always the GameObject with the 'Avatar Descriptor' component.<br>
 GameObject: The names you can click on under the 'Hierarchy' window. Each name represents a GameObject.
 
 Treat Hammy nicely!
@@ -39,7 +39,7 @@ If you expand Hammy Follower enough, you'll find Container > Hammy PhysSettings.
 However, this would make Hammy be very stiff (not cute!). Only way to improve this is to take Hammy to a 3D software and merge/reduce his bone count.
 
 Hammy has a cute idle animation built-in, hence the 1 animator count. This is the easiest to optimize as you can move the contents of the animator, to your main avatar descriptor and delete the animator component.
-You'll have to repath the animation's root, you can do it manually or use a tool like https://github.com/Dreadrith/Unity-Animation-Hierarchy-Editor.
+You'll have to repath the animation's root, you can do it manually or use a tool like [this one](https://github.com/Dreadrith/Unity-Animation-Hierarchy-Editor).
 The animation contains transforms properties, and may need to be handled like you'd handle animations for non-human parts like tails and wings. Good luck!
 
 Of course, you can always optimize the mesh to reduce the polygons using a 3D modeling software.
