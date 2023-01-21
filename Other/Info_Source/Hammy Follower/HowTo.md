@@ -1,7 +1,7 @@
 # Hammy The Follower [<img src="https://github.com/Dreadrith/DreadScripts/raw/main/Other/DreadLogo.png" width="30" height="30">](https://dreadrith.com/links/ "Dreadrith") [<img src="https://github.com/JustSleightly/Resources/raw/main/Icons/Ko-fi.png" width="30" height="30">](https://dreadrith.com/kofi/ "Store") [<img src="https://github.com/JustSleightly/Resources/raw/main/Icons/Discord.png" width="30" height="30">](https://dreadrith.com/discord/ "Discord") [<img src="https://github.com/JustSleightly/Resources/raw/main/Icons/Store.png" width="30" height="30">](https://www.dreadrith.com/ "Store")
 
-Setup
-=====
+## Setup
+
 1. Find the prefab 'Hammy Follower' in Assets > DreadScripts > Prefabs > Hammy Follower
 2. Drag and Drop 'Hammy Follower' onto the Root* of your Avatar
 3. (Optional) Move the new GameObject*, 'Hammy Follower', to where you want him to follow.
@@ -13,15 +13,18 @@ GameObject: The names you can click on under the 'Hierarchy' window. Each name r
 
 Treat Hammy nicely!
 
+## Extra
+Adding a Toggle: An Icon for your menu toggle is included in DreadScripts > Prefabs > Hammy Follower > Mat + Textures.
+As well as animations for toggling Hammy On or Off in DreadScripts > Prefabs > Hammy Follower > Animations.
 
+Hue Shifting (PC ONLY): A Mask Texture is included in DreadScripts > Prefabs > Hammy Follower > Mat + Textures.
+Use this to only hue shift the parts with color in them with your shader of choice.
 
-Optimization/Advanced
-======================
-Everything below is for those that want to meet Quest Specifications and avoid reaching Very Poor performance rating or just want to optimize further.
+## Optimization
+The following is for those that want to meet Quest Specifications and avoid reaching Very Poor performance rating or just want to optimize further.
 Not everything will be explained as this is for slightly advanced users.
 
-Hammy's Standalone Stats:
--------------------------
+### Hammy's Standalone Stats:
 | Stat  | Count |
 | --- | --- |
 | Animators  | 1  |
@@ -46,3 +49,14 @@ The animation contains transforms properties, and may need to be handled like yo
 
 Of course, you can always optimize the mesh to reduce the polygons using a 3D modeling software.
 But why should Hammy be any less cute than you?
+
+## Advanced
+Spazzing Issues / Scaling: Generally, scaling the prefab is ok but you may notice that things may be acting a bit weird if you scale it down too much.
+This is because the follower system has a limited reach and it may be hitting the limit. This is visible with the follower no longer following smoothly and instead snaps or the balloon moves 1:1 with you.
+If this happens, it may help to scale the system up without scaling the pet itself.
+To do this, you can follow these steps:
+1. Unpack the follower prefab.
+2. Go down the chain to 'Container' and drag it out of the system.
+3. Scale up the follower prefab's root, not too much!
+4. Drag and Drop 'Container' Back to where it was ('Chain 5').
+5. Done!
