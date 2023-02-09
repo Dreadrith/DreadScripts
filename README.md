@@ -5,7 +5,7 @@
 
 <h1 align="center">Paid</h1>
 
-## [Carbon Copy (VRChat)](https://github.com/Dreadrith/Carbon-Copy)
+## [Carbon Copy (VRChat)](https://github.sleightly.dev/carboncopy)
 <details>
 <summary><b>Carbon Copy</b> is a feature-rich constraint-based clone system built for VRChat users.</summary>
   
