@@ -1,3 +1,26 @@
+(v2.9.0)
+--------
+- [Feature] Implemented CE QuickToggle! Drag and Drop a gameobject to a state to use.
+- [Feature] Implemented Template dynamic renaming!
+- [Feature] Right click a condition's parameter to change it using keyboard. Write a non-existent parameter to add it quickly.
+- [Feature] Implemented custom condition matchin options. Click the cog icon on conditions to activate temporarily.
+- [Feature] Ability to set default Entry, Exit and AnyState positions for newly added layers.
+- [Feature] Added 'Add Root Tree' to Blendtree nodes.
+- [Improvement] If multiple states are selected, drag n drop of motion onto one of those states will set it for all of them
+- [Fix] Fixed new empty states not using custom default motion.
+- [Fix] Fixed inability to undo condition changes.
+- [Fix] Fixed Quick Clip ('+') opening your documents as path by default due to previously saving a clip in a location that doesn't exist in the current project.
+- [Fix] Fixed the ability to brick your controller by replicating an Exit transition from Entry.
+- [Fix] Fixed Replace Parameter only affecting the second parameter of 'Copy' parameter drivers.
+- [Fix] Fix clearing settings not working properly if settings window wasn't opened beforehand.
+- [UI] Fixed the 'Add' button for missing parameters going outside the alloted GUI area
+- [UI] Fixed minor GUI issue with Trigger conditions
+- [Patch] Renaming parameter will also reflect in parameter drivers
+- [Patch] Adding a parameter will now make the scrollbar go down to the bottom.
+- [Patch] Visual indicator to differentiate between float and integer parameters easier.
+- [Misc] Slight changes to saving and settings UI. Made need to set some settings again.
+- [Misc] States with (WD on/off) in their name will now be ignored when mass setting write defaults
+
 (v2.8.4)
 --------
 - [Fix] Fixed Transitions to StateMachine not using custom default settings
