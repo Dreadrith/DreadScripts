@@ -1,3 +1,9 @@
+(v2.9.1)
+--------
+- [Feature] Added ability to choose whether Quick Toggle merges with existing clips or replaces them.
+- [Fix] Fixed Quick Toggle window appearing tiny in the top left corner of the screen
+- [Fix] Fixed layer's default node positions not changing and saving
+
 (v2.9.0)
 --------
 - [Feature] Implemented CE QuickToggle! Drag and Drop a gameobject to a state to use.
