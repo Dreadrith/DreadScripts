@@ -15,13 +15,5 @@
     "bannerUrl":"banner.png",
     "githubRepos":[
         "Dreadrith/SelectionHelper"
-    ],
-    "packages":[
-        {
-            "name":"com.dreadscripts.selectionhelper",
-            "releases":[
-                "https://github.com/Dreadrith/SelectionHelper/releases/download/1.2.2/com.dreadscripts.selectionhelper-1.2.2.zip"
-            ]
-        }
     ]
 }
