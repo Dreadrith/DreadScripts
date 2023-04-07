@@ -1,7 +1,7 @@
 {
     "name":"DreadScripts VPM Listing",
     "id":"com.dreadscripts.vpm-listing",
-    "url":"https://dreadrith.github.io/dreadscripts/index.json",
+    "url":"https://dreadrith.github.io/DreadScripts/index.json",
     "author":{
         "email":"dreadscripts@gmail.com",
         "name":"Dreadrith",
@@ -20,7 +20,7 @@
         {
             "name":"com.dreadscripts.selectionhelper",
             "releases":[
-                "https://github.com/Dreadrith/SelectionHelper/releases/download/v1.2.2/SelectionHelper_v1.2.2.zip"
+                "https://github.com/Dreadrith/SelectionHelper/releases/download/1.2.2/com.dreadscripts.selectionhelper-1.2.2.zip"
             ]
         }
     ]
