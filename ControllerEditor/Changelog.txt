@@ -1,3 +1,13 @@
+(v2.9.4)
+--------
+- [CRITICAL] Fixed an issue that causes CE to lockup when going into playmode with domain reload.
+- [Feature] Added 'Convert' to animator parameters for all types. Note: Converted parameters may not handle conditions the same way they did with their original type.
+- [Feature] Added 'Sample from Active StateMachine' to Layer node positions.
+- [Feature] Added 'Reverse Adjusts Values' to settings. This will modify the value/threshold of conditions with less/greater when reversing to properly reflect the opposite value.
+- [Fix] Parameter rename window will now appear in the middle of your animator window
+- [Fix] Fixed restoring default settings for 'Default State' setting name as blank.
+- [Misc] Moved 'Legacy Dropdown' to window's context menu
+
 (v2.9.2)
 --------
 - [CRITICAL] Fixed an inconsistent bug that sometimes causes the HWID to be reported incorrectly or the authentication dropping randomly.
