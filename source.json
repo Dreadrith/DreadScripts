@@ -15,6 +15,7 @@
     "bannerUrl":"banner.png",
     "githubRepos":[
 		"Dreadrith/SelectionHelper",
-		"Dreadrith/VRCSDKPlus"
+		"Dreadrith/VRCSDKPlus",
+	    	"Dreadrith/LimbControl"
     ]
 }
