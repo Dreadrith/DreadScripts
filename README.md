@@ -47,7 +47,7 @@
 </details>
 <h1 align="center">Free</h1>
 
-## [Limb Control](https://github.com/Dreadrith/DreadScripts/tree/main/Limb%20Control)  
+## [Limb Control](https://github.com/Dreadrith/LimbControl)  
 (VRChat) Control your limbs through Puppet Control whether you're on PC or Half Body!
 ## [Asset Organizer](https://github.com/Dreadrith/AssetOrganizer)  
 Reorganizes Prefab, Scene or Folder's dependency assets into their own sorted folders 
