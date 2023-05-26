@@ -1,3 +1,9 @@
+(v3.0.0)
+--------
+- [CRITICAL] Implemented new licensing! Stabler. Much better response time. Less down time. Manual license transfer, bug reporting and feedback features!
+- [Improvement] Failed patches won't make other patches fail too and can now retry.
+- [Fix?] A patch may fail due to special characters in the project name. Retrying patching should fix it.
+
 (v2.9.4)
 --------
 - [CRITICAL] Fixed an issue that causes CE to lockup when going into playmode with domain reload.
