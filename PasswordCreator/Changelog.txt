@@ -1,3 +1,11 @@
+(v2.7.0)
+--------
+- [CRITICAL] Implemented new licensing! Stabler. Much better response time. Less down time. Manual license transfer, bug reporting and feedback features!
+- [Feature] Implemented HoloBadge support! Flaunt your HoloBadge by JustSleightly on the protected avatar!
+- [Improvement] Password Creator can now take 0 memory! Thanks to local parameters!
+- [Fix] Fixed the stupid bug with the scrollbar flashing while resizing window.
+- [Fix?] Might've improved some sync stuff, maybe? *I don't know. I'm not sure. I'm not a developer. I'm just a monkey with a keyboard. (*: Copilot completion lmao)
+
 (v2.6.6)
 --------
 - [Fix] Changed something that otherwise may be a security flaw
