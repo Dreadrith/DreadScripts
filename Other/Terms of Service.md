@@ -1,19 +1,19 @@
-# Terms and Conditions
-By purchasing a product, you agree to the Terms and Conditions & [Privacy Policy](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Privacy%20Policy.md).<br>
-**Violation of these terms will result in [blacklisting](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#blacklist)**.
+# Terms of Service
+By purchasing a product, you agree to the Terms of Service & [Privacy Policy](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Privacy%20Policy.md).<br>
+**Violation of these terms will result in [blacklisting](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#blacklist)**.
 
 ## Store Rules
 1. If purchasing for someone else, put the giftee's information and give them the license key (if any) for them to activate the product.
-2. Refunds are viable for [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#license-protected-product) if it has not yet been activated. No refunds otherwise due to the nature of digital products.
-3. Do **NOT** [chargeback](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#tools).
-4. For any questions/issues, read [here](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#contact).
+2. Refunds are viable for [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#license-protected-product) if it has not yet been activated. No refunds otherwise due to the nature of digital products.
+3. Do **NOT** [chargeback](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#tools).
+4. For any questions/issues, read [here](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#contact).
 
 ## Product rules:
 1. Do **NOT** attempt to disassemble or de-obfuscate any script or source code, according to DMCA Code 1201 regarding circumvention of copyright protection systems.
-2. Do **NOT** use HWID Spoofers when using [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#license-protected-product). This wouldn't be a violation in of itself but it may cause you issues with license verification and transfer guidelines.
+2. Do **NOT** use HWID Spoofers when using [licensed products](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#license-protected-product). This wouldn't be a violation in of itself but it may cause you issues with license verification and transfer guidelines.
 3. Do **NOT** redistribute any file without permission or appropriate license. Follow export instructions if provided.
 4. Do **NOT** claim or resell as your own.
-5. The following rules apply to **ALL** products except '[Tools](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#tools)':
+5. The following rules apply to **ALL** products except '[Tools](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#tools)':
     - Do **NOT** use commercially without permission or an appropriate license, such as selling on an avatar or offering the product as a service or upsell in an upload or commission.
     - Do **NOT** sell on an avatar usually costing below $10.
     - Do **NOT** use on public releases or uploads without permission.
@@ -32,7 +32,7 @@ By purchasing a product, you agree to the Terms and Conditions & [Privacy Policy
 3. If I quit, license protection systems will be removed from relevant products.
 
 ## License Transfer Guidelines
-In the event of hardware change, you may request a license transfer [by contacting me](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%20and%20Conditions.md#contact). License transfers will follow these guidelines:
+In the event of hardware change, you may request a license transfer [by contacting me](https://github.com/Dreadrith/DreadScripts/blob/main/Other/Terms%of%Service.md#contact). License transfers will follow these guidelines:
 1. License transfer is only allowed after 30 days from license activation.
 2. License transfer to another user is not allowed.
 3. License transfer to a device from which you've already transferred from, is not allowed.
