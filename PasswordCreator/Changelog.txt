@@ -1,3 +1,17 @@
+(v2.8.0)
+--------
+- [Feature] License transfer is now done through e-mail verification! 'Security Details' have been scrapped due to being confusing and ineffective.
+- [Feature] Most settings are now saved!
+- [Feature] There's now a password history in case you forgot your password!
+- [Modification] Modified name obfuscation to use an explicit set of characters rather than random bytes.
+- [Fix] Fixed an obscure security flaw that allowed indefinite unlock time if submenu locking is used
+- [Fix] Fixed an issue that caused exclusively submenu locking to not work.
+- [Fix] Handled some cases where path generation may fail due to inconventional avatar names
+- [UI] Fixed rich text with 'Commercialize'
+- [Misc] Fixed rich text - if any - in license info
+- [Misc] Preset dropdown is now removed due to introduction of saved settings
+- [Known Issue] Some people are experience re-locking in certain situations such as world teleportation or FBT calibration. If you're experiencing this, please contact me for support and debug to hopefully resolve this issue for everyone.
+
 (v2.7.0)
 --------
 - [CRITICAL] Implemented new licensing! Stabler. Much better response time. Less down time. Manual license transfer, bug reporting and feedback features!
