@@ -1,3 +1,13 @@
+(v3.1.0)
+--------
+- [Feature] License Transfer is now done through e-mail verification! 'Security Details' have been scrapped due to being confusing and ineffective.
+- [Feature] Animation Window: Explicitly set the animator controller and relative root for pathing.
+- [Feature] Animation Window: Drag n Drop GameObjects to a property to change its path.
+- [Feature] Animation Window: Automatically switches to the animation clip in the selected animator state.
+- [Fix] Fixed a code issue that caused considerable lag whenever selecting anything.
+- [Fix] Fixed template controllers not duplicating animation clips with T_ as a prefix if no parameters were renamed
+- [UI] Modified window toolbar. Shows the tab when the corresponding object is selected OR when toolbar option is enabled.
+
 (v3.0.0)
 --------
 - [CRITICAL] Implemented new licensing! Stabler. Much better response time. Less down time. Manual license transfer, bug reporting and feedback features!
