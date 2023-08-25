@@ -1,3 +1,9 @@
+(v3.1.1)
+--------
+- [Feature] Animation Window: Right click to 'Set Property Name' for a property
+- [Feature] Animation Window: Right click to 'Set Type' for a property.
+- [Known Issue] Property and Type windows may sometimes appear far from the selected property
+
 (v3.1.0)
 --------
 - [Feature] License Transfer is now done through e-mail verification! 'Security Details' have been scrapped due to being confusing and ineffective.
