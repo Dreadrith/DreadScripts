@@ -1,3 +1,15 @@
+(v2.8.2)
+--------
+- [CRITICAL FIX] Fixed re-lock issue when the local avatar loads after already loading the original avatar, such as with mirrors and cameras.
+- [Fix] Fixed some miscellaneous issues that I forgot to note down.
+- [Misc] Lowered time to lock the avatar from 1.5s to 0.5s
+
+(v2.8.1)
+--------
+- [Fix] Fixed Password ReCreator (Commercial Feature)
+- [Fix] Name obfuscation will now only use letters and numbers as not to cause weird issues with the avatar and its animator.
+- [Fix] Fixed a bug that may have been causing Menu and Parameters to generate with missing references causing various weird issues.
+
 (v2.8.0)
 --------
 - [Feature] License transfer is now done through e-mail verification! 'Security Details' have been scrapped due to being confusing and ineffective.
