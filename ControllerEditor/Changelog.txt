@@ -1,3 +1,9 @@
+(v3.2.1)
+--------
+- [Feature] Drag & Drop GameObjects to the animation window to add them as a new curve. Settings option included.
+- [Fix] Fixed an issue with selecting transitions.
+- [Fix] Fixed an issue with transition names expanding the window's width too much. (@gonsodany)
+
 (v3.2.0)
 --------
 - [Feature] Added Context menu options to motions for embedding, extracting and renaming motions.
