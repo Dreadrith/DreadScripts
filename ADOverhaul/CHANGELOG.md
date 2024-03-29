@@ -1,3 +1,12 @@
+v0.11.1
+-------
+- [Fix] Fixed 'Apply Changes' losing the reference to the root, ignoreTransforms and Colliders.
+- [Fix] Fixed 'Parameter' being grayed out if no controller parameter has an underscore.
+- [Fix] Fixed inability to use orbit view (Alt+Left Mouse) when in PB edit mode.
+- [Fix] Fixed Object Selector in Unity 2022
+- [UI] Added option to toggle animated foldouts
+- [Misc] Set a minimal Unity version so that it doesn't give you a popup in VCC
+
 v0.11.0
 -------
 - [CRITICAL] Migrated to new licensing! Faster, more stable, and more features.
