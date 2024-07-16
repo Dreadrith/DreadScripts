@@ -1,3 +1,27 @@
+(v3.3.0)
+--------
+- [CRITICAL] Controller Editor's source code has been heavily refactored and reorganized to allow easier updates. Due to the size of CE, this may have introduced a number of new bugs or unexpected changes. Please report such things if you encounter them.
+- [Feature] Animator Controller: Category View! Layers can now be viewed in Category based on Name Path such as Toggles/Head/Hat, or layer tags in the format of _category:path/name. Can category tag with context menu. Categories and layers are sorted alphabetically.
+- [Feature] Animator Controller: Compact View! Layers can now be viewed in a condensed way that only displays their index and name.
+- [Feature] Animator Controller: Can press a keyboard character to focus the next layer that starts with that character.
+- [Feature] Animator Controller: Can Drag N Drop Motions to BlendTrees to add them to it or replace a clip.
+- [Feature] Animator Controller: Added 'Animate' to Parameters to more easily add them to the activate animation in the animation window.
+- [Feature] Animator Controller: Selected states will have in and out transitions arrow animated. Toggleable in settings.
+- [Feature] Animator Controller: Arrows on transitions are now shifted to make it easier to see their direction. Adjustable in settings.
+- [Feature] Animator Controller: Pasted states are now auto-selected.
+- [Feature] Animator Controller: Implemented state styles. Right click a state to set a style for it.
+- [Feature] Animation Window: Material Shader Properties will now also show up when setting Property Name for a Renderer. Renderer must exist in the same path as the property from the root.
+- [Fix] Animation Window: Improved positioning of windows that appear in the animation window. May still appear way off.
+- [Fix] Animation Window: Fixed some bugs with animation window properties with children such as transform's 'Position' property.
+- [Fix] Animation Window: Minor tweaks and fixes with Drag&Drop to the animation window.
+- [Fix] Animator Controller: Fixed renaming with F2 showing the layer 0 name for rename start.
+- [Fix] Animator Controller: Fixed double transition getting created when making a transition to an empty sub-statemachine.
+- [Fix] Animator Controller: Fixed inability to edit anystate transitions in sub-statemachines
+- [Misc] Animator Controller: Auto-Frame will no longer frame the layer if it's the one already being inspected.
+- [Misc] Animator Controller: Holding shift when adding template will no longer insta-confirm it and will instead turn off "Unique parameter" and show the window anyway.
+- [UI] CE Window: The collapse button is now automatically set to the height of its part. It used to be hardcoded height. You may see some repaint delay when heights change due to this.
+- [UI] Rearranged and added options in the settings window.
+
 (v3.2.1)
 --------
 - [Feature] Drag & Drop GameObjects to the animation window to add them as a new curve. Settings option included.
@@ -118,32 +142,3 @@
 Fake Transition: Do Ctrl+Shift+Click (x2) on any Node to do a fake transition.
 You can make a transition from ANY node to ANY other node including itself. These transitions are only for fun. They aren't functional and will not be saved.
 They may throw an error rarely but should be relatively safe.
-
-(v2.8.0)
---------
-- [Feature] Added ability to rename states using F2.
-- [Feature] Ctrl + Double click on graph to add new empty state
-- [Feature*] Added shortcut functionality to Layers. Press Ctrl+C to Copy. Ctrl+V to Paste. Ctrl+D to Duplicate. F2 to rename.
-- [Feature*] Added Cosmetic option to show if a state has WriteDefaults and Behaviours. Can be toggled.
-- [Feature] Added Cosmetic option to show state coordinates. Can be edited and toggled
-- [Feature!] Added button to hide/show assets in sub-asset explorer.
-- [Feature] Ctrl+A will now Select all States. Ctrl+Shift+A will Select all Transitions.
-- [Feature] Added 'Unique RNG' Template Controller by Cam
-- [Improvement] StateMachines can now do Chain-Transitioning
-- [Patch] Add Empty State will automatically snap to grid
-- [Fix] Fixed drag and drop of clips creating two states
-- [Fix] Fixed Exit Node not having a context menu
-- [Fix] Reverse Transitions will properly update transitions
-- [Misc] Added a tip on the Animator Window to click on the name of the controller to ping it. Appears once.
-
-Feature*: Thanks and Credit to Dj Lukis for inspiration and reference code
-Feature!: Due to a unity complications, you'll need to refresh the project window for immediate update. Can exit and re-open folder or ping the controller.
-
-(v2.7.8)
---------
-- [Fix] Fixed terrible bug when copying/duplicating.
-
-(v2.7.7)
---------
-- [Fix] Fixed error when copying/duplicating a layer with statemachine behaviours
-- [Fix] Fixed Assertion errors popping up when copying/duplicating a layer
