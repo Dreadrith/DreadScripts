@@ -1,3 +1,11 @@
+(v3.3.1)
+--------
+- [Critical Fix] Fixed Unity crashing when any 'Quick Input' window gets opened, such as Parameter Rename, Animator Selection, New Category Tag, and Quick Toggle.
+- [Fix] Fixed CE defaulting to "Verify On Display" instead of "Verify On Project Load", making it not patch unless opened.
+- [Known Issue] Compact layer view may require being unfocused, then focused again to fix the element height. Usually after recompiling.
+- [Known Issue] Some node styles may not apply completely correctly when patching.
+- [Known Issue] Some controller templates used may include clips that are in Packages. These clips normally don't get included in packages being exported.
+
 (v3.3.0)
 --------
 - [CRITICAL] Controller Editor's source code has been heavily refactored and reorganized to allow easier updates. Due to the size of CE, this may have introduced a number of new bugs or unexpected changes. Please report such things if you encounter them.
