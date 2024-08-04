@@ -1,3 +1,9 @@
+(v3.3.2)
+--------
+- [Fix] Animator Controller: Fixed base template parameters being included when merging template controllers even when renamed.
+- [Fix] Animator Controller: Made the "+" on States for quick anim clip work only on left click. This fixes it getting stuck on mouse if hovered when trying to drag the graph.
+- [Fix] Animator Controller: Fixed placeholder labels being aligned to the left instead of the right in the Quick Toggle window.
+
 (v3.3.1)
 --------
 - [Critical Fix] Fixed Unity crashing when any 'Quick Input' window gets opened, such as Parameter Rename, Animator Selection, New Category Tag, and Quick Toggle.
