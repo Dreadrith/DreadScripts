@@ -1,3 +1,15 @@
+(v3.4.0)
+--------
+- [Feature] Template controllers can now be assigned and unassigned through the templates dropdown in the Animator window.
+- [Improvement] Motions used in Templates that exist in Packages will now be copied to the save location specified in the settings. This allows you to more easily export these motions.
+- [Fix] Fixed Controlled Editor requiring the Avatars SDK to run
+- [Fix] Fixed templates adding the original parameter when merging a template controller.
+- [Fix] Fixed layer view not refreshing properly on compact view change.
+- [UI] Minor UI tweaks, including version and license display. Can now hide your username.
+- [Misc] Template Motions will now have their "T_" cut from their name when copied.
+- [Misc] Modified some existing templates to have more dynamic naming.
+- [Misc] Due to changes with how Templates work, holding control or shift when adding a template will no longer auto-disable "Unique" parameter. Alternative is setting its default state through the Settings > Defaults > Other.
+
 (v3.3.2)
 --------
 - [Fix] Animator Controller: Fixed base template parameters being included when merging template controllers even when renamed.
